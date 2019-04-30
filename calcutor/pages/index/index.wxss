@@ -1,0 +1,67 @@
+/* CSS顺序 => 全局 -> 从上向下 */
+/* 全局 */
+.topBox, .mainBox, .bottomBox {
+    width: 100%;
+    display: flex;
+    margin-bottom: 60rpx;
+}
+
+
+/* topBox */
+.topBox {
+    float: left;
+}
+
+.top-left, .top-right{
+    width: 100%;
+}
+
+.top-left .car {
+    color: green;
+}
+
+.top-right .place {
+    text-align: right;
+    color: red;
+}
+
+.piker {
+    text-align: end;
+}
+
+
+/* mainBox */
+.content {
+    margin-bottom: 30rpx;
+}
+
+.content .price, .oil, trip {
+    margin-bottom: 30rpx;
+}
+
+.unit-price, .oil, .trip {
+    display: flex;
+    align-items: center;
+}
+
+.unit-price input, .oil input, .trip input {
+    display: inline-block;
+}
+
+
+.cost {
+    position: absolute;
+    top: 40%
+}
+
+.spending {
+    color: red;
+}
+
+
+/* bottomBox */
+.bottomBox button {
+    margin:0;
+    position: absolute;
+    top: 50%;
+}

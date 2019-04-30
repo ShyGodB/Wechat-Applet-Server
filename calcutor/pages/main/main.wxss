@@ -1,0 +1,45 @@
+/* pages/main/main.wxss */
+
+.bc-blue {
+    width: 50%;
+    height: 300rpx;
+    text-align: center;
+    background-color: skyblue;
+}
+
+.flex-wrp-row {
+    display: flex;
+    flex-direction: row;
+}
+ 
+.item {
+    padding: 20rpx;
+    position: relative;
+}
+ 
+.item-left {
+    flex: 1; /* 重要 */
+    align-items: center;
+}
+ 
+.item-right {
+    position: relative;
+    align-items: center;
+}
+
+.nav-group {
+    width: 100%;
+    padding: 8rpx;
+}
+
+.nav-item {
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    color: white;
+    background-color:#708090;
+}
+
+.active {
+    background-color: greenyellow;
+}

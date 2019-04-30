@@ -1,0 +1,29 @@
+<!--pages/main/main.wxml-->
+<view class="container">
+    <view class="flex-wrp-row item">
+        <view class="item-left flex-wrp-row">
+            <rich-text nodes="{{addCar}}"></rich-text>
+        </view>
+
+        <view class="item-right flex-wrp-row">
+            <rich-text nodes="{{manageCar}}"></rich-text>
+        </view>
+    </view>
+
+    <view class="section flex-wrp-row item">
+        <view class="bc-blue item-left flex-wrp-row">
+            <text> 总行程 </text>
+        </view>
+
+        <view class="bc-blue item-right flex-wrp-row">
+            <text> 总开销 </text>
+        </view>
+    </view>
+
+    <view class="main">
+        <view class="nav-group">
+            <text class="nav-item {{index == currentId ? 'active':''}}" id="{{index}}" wx:for="{{timeInterval}}" wx:key="{{index}}" bindtap='changeBg'> {{item}} </text>
+        </view>
+    </view>
+
+</view>
