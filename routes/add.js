@@ -17,7 +17,6 @@ router.post("/addGasolineRecord", async (ctx) => {
     ctx.body = {cost: cost}
 });
 
-
 // 获取用户出行记录
 router.post("/listGasolineRecord", async (ctx) => {
     const userId = ctx.request.body.userId;
@@ -25,7 +24,6 @@ router.post("/listGasolineRecord", async (ctx) => {
     const rows = await listGasolineRecordPromise;
     ctx.body = rows;
 });
-
 
 
 module.exports = router;

@@ -2,12 +2,11 @@ const Router = require('koa-router');
 const router = new Router();
 const axios = require('axios');
 
+
 // 请求主页
 router.get("/", async (ctx) => {
     await ctx.render("index");
 });
-
-
 
 router.post("/onLogin", async (ctx) => {
     const code = ctx.request.body.code;
@@ -22,11 +21,9 @@ router.post("/onLogin", async (ctx) => {
  	 })
  	 .catch((error) => {
     	     console.log(error);
- 	 });   
-    ctx.body = data; 
+ 	 });
+    ctx.body = data;
 });
 
 
-
-   
 module.exports = router;

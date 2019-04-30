@@ -3,7 +3,6 @@ const user = require('../lib/user');
 const router = new Router();
 
 
-
 // 新增用户
 router.post("/addUser", async (ctx) => {
     const userInfo = ctx.request.body.userInfo;
@@ -14,8 +13,7 @@ router.post("/addUser", async (ctx) => {
     ctx.body = {msg: "成功"};
 });
 
-// 获取所有用户信息
-
+// 获取所有用户的openid
 router.post("/listAllOpenid", async (ctx) => {
     const listAllOpenidPromise = user.listAllOpenid();
     const allOpendiArray = await listAllOpenidPromise;
@@ -26,7 +24,7 @@ router.post("/listAllOpenid", async (ctx) => {
     ctx.body = openidArray;
 });
 
-// 获取单个用户信息
+// 获取单个用户的所有信息
 router.post("/getUser", async (ctx) => {
     const openid = ctx.request.body.openid;
     const getUserPromise = user.getUser(openid);
@@ -35,7 +33,7 @@ router.post("/getUser", async (ctx) => {
     ctx.body = userInfo;
 });
 
-// 更新用户信息
+// 更新用户部分信息
 router.post('/updateUser', async (ctx) => {
     const data = ctx.request.body;
     const id = data[0];
@@ -57,5 +55,6 @@ router.post('/updateUser', async (ctx) => {
         break;
     }
 });
+
 
 module.exports = router;
