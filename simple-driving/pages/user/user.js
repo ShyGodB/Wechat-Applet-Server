@@ -18,7 +18,7 @@ Page({
             url: 'https://www.tripspend.com:8888/getUserTripRecord',
             method: "post",
             data: {
-                userId: app.globalData.userInfo[0].id
+                userId: app.globalData.userInfo.id
             },
             header: {
                 "Content-Type": "application/json"
@@ -59,7 +59,7 @@ Page({
             url: 'https://www.tripspend.com:8888/listGasolineRecord',
             method: "post",
             data: {
-                userId: app.globalData.userInfo[0].id
+                userId: app.globalData.userInfo.id
             },
             header: {
                 "Content-Type": "application/json"

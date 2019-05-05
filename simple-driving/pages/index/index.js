@@ -4,6 +4,7 @@ Page({
     data: {
         // 页面加载时的预设数据
         isUser: false,
+        isNewUser: false,
         location: {},
         userInfo: {},
         gasoline: [],
@@ -134,7 +135,7 @@ Page({
             url: "https://www.tripspend.com:8888/addTripRecord",
             method: "post",
             data: {
-                userId: app.globalData.userInfo[0].id,
+                userId: app.globalData.userInfo.id,
                 price: price,
                 amount: amount,
                 trip: trip,
@@ -159,57 +160,111 @@ Page({
 
     // 监听页面加载，可做一些事情
     onLoad() {
-
-        const data_g = app.globalData;
-        this.setData({ 
-            // price: data_g.gasoline[1].value,
-            // amount: data_g.userInfo[0].car_spend,
-
-            location: data_g.location,
-
-            isUser: data_g.isUser,
-            isDefaultPrice: true,
-            isDefaultAmount: true,
-            userInfo: data_g.userInfo[0],
-
-            gasoline: data_g.gasoline,
-            updateTime: data_g.updateTime
-        });
-
-        if (app.globalData.userInfo) {
-            this.setData({
-                userInfo: app.globalData.userInfo,
-                hasUserInfo: true
-            })
-        } else if (this.data.canIUse) {
-            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-            // 所以此处加入 callback 以防止这种情况
-            app.userInfoReadyCallback = res => {
-                this.setData({
-                    userInfo: res.userInfo,
-                    hasUserInfo: true
-                })
-            }
-        } else {
-            // 在没有 open-type=getUserInfo 版本的兼容处理
-            wx.getUserInfo({
-                success: res => {
-                    app.globalData.userInfo = res.userInfo
-                    this.setData({
-                        userInfo: res.userInfo,
-                        hasUserInfo: true
-                    })
-                }
-            })
-        }
-    },
-    getUserInfo: function (ev) {
-        console.log(ev)
         this.setData({
-            userInfo: ev.detail.userInfo,
-            hasUserInfo: true
+            updateTime: app.globalData.updateTime,
+            isDefaultAmount: true,
+            amount: app.globalData.userInfo.car_spend,
+            isDefaultPrice: true,
+            price: app.globalData.gasoline[1].value,
+            gasoline: app.globalData.gasoline,
+            location: app.globalData.location,
+            isNewUser: app.globalData.isNewUser
         })
-        console.log(app.globalData.userInfo)
+        // this.setData({ 
+        //     // price: data_g.gasoline[1].value,
+        //     // amount: data_g.userInfo[0].car_spend,
+
+        //     location: data_g.location,
+
+        //     isUser: data_g.isUser,
+        //     isDefaultPrice: true,
+        //     isDefaultAmount: true,
+        //     userInfo: data_g.userInfo[0],
+
+        //     gasoline: data_g.gasoline,
+        //     updateTime: data_g.updateTime
+        // });
+
+        // if (app.globalData.userInfo) {
+        //     this.setData({
+        //         userInfo: app.globalData.userInfo,
+        //         hasUserInfo: true
+        //     })
+        // } else if (this.data.canIUse) {
+        //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+        //     // 所以此处加入 callback 以防止这种情况
+        //     app.userInfoReadyCallback = res => {
+        //         this.setData({
+        //             userInfo: res.userInfo,
+        //             hasUserInfo: true
+        //         })
+        //     }
+        // } else {
+        //     // 在没有 open-type=getUserInfo 版本的兼容处理
+        //     wx.getUserInfo({
+        //         success: res => {
+        //             app.globalData.userInfo = res.userInfo
+        //             this.setData({
+        //                 userInfo: res.userInfo,
+        //                 hasUserInfo: true
+        //             })
+        //         }
+        //     })
+        // }
+        console.log(app.globalData);
+    },
+    getUserInfo (ev) {
+        const userInfo = ev.detail.userInfo;
+        this.setData({
+            userInfo: userInfo,
+            isNewUser: false,
+            hasUserInfo: true
+        });
+        wx.login({
+            success: res => {
+                // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                if (res.code) {
+                    wx.request({
+                        url: 'https://www.tripspend.com:8888/addUser',
+                        method: "post",
+                        data: {
+                            code: res.code,
+                            userInfo: userInfo
+                        },
+                        header: {
+                            "Content-Type": "application/json"
+                        },
+                        success: (res) => {
+                            const secretSessionKey = res.data.session_key;
+                            const userInfo = res.data.userData[0]; 
+                            app.globalData.userInfo = userInfo;
+                            this.setData({
+                                userInfo: userInfo
+                            });
+                            wx.setStorage({
+                                key: userInfo.openid,
+                                data: secretSessionKey,
+                            })
+                        },
+                        fail: (err) => {
+                            console.log(err);
+                        },
+                        complete: () => {
+                            // console.log("完成");
+                            wx.getStorage({
+                                key: this.data.userInfo.openid,
+                                success: (res) => {
+                                    console.log(res.data)
+                                },
+                            })
+                        }
+                    })
+                } else {
+                    console.log('登录失败！' + res.errMsg)
+                }
+            }
+        })
+        
     }
     
 });

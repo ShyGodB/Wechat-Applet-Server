@@ -1,3 +1,4 @@
+@import "/app.wxss";
 /* CSS顺序 => 全局 -> 从上向下 */
 /* 全局 */
 .topBox, .mainBox, .bottomBox {
@@ -31,6 +32,10 @@
 
 
 /* mainBox */
+.updateTime {
+    margin-bottom: 30rpx;
+}
+
 .content {
     margin-bottom: 30rpx;
 }

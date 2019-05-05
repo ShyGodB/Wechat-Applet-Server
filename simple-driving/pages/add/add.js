@@ -54,7 +54,7 @@ Page({
             url: "https://www.tripspend.com:8888/addGasolineRecord",
             method: "post",
             data: {
-                userId: app.globalData.userInfo[0].id,
+                userId: app.globalData.userInfo.id,
                 price: price,
                 num: num,
                 cost: cost
@@ -63,7 +63,7 @@ Page({
                 "Content-Type": "application/json"
             },
             success: (res) => {
-                console.log(res.data);
+                // console.log(res.data);
             },
             fail: (err) => {
                 console.log(err);

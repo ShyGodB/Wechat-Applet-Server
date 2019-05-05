@@ -1,3 +1,5 @@
+@import "/app.wxss";
+
 .topBox {
     width: 100%;
     height: 30rpx;
@@ -18,4 +20,8 @@
 
 .cost-text {
     color: red
+}
+
+.updateTime {
+    margin-bottom: 30rpx;
 }

@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container bg-orange.light text-blue .flex">
     <view class="topBox">
         <view class="top-left top">
            <picker mode="selector" bindchange="changeCar" value="{{cars}}" range="{{cars}}">
@@ -17,6 +17,9 @@
 
     <view class="mainBox">
         <view class="content">
+
+            <view class="updateTime"> {{updateTime}} </view>
+
             <view class="price">
                 <radio-group class="radio-group" bindchange="radioChange">
                     <label class="radio" wx:for="{{gasoline}}" wx:key="{{}}">
@@ -29,13 +32,13 @@
             <view class="unit-price">
                 <text> 单价： </text>
                 <input class="gasolinePrice" bindinput='changePrice' id="{{index}}" value="{{isDefaultPrice === true? price : gasoline[index].value}}" type="digit" placeholder="当前油价" disabled="{{editPrice}}"></input>
-                <image src="/images/pen.png" bindtap="beEditedPrice" style="width:32rpx;height:32rpx"></image>
+                <image src="/public/images/pen.png" bindtap="beEditedPrice" style="width:32rpx;height:32rpx"></image>
             </view> 
 
             <view class="oil">
                 <text> 油耗：</text>
                 <input class="gasolineAmount" bindinput='changeAmount' value="{{isDefaultAmount === true ? amount : ''}}" type="digit" placeholder="每百公里耗油" disabled="{{editAmount}}"></input>
-                <image src="/images/pen.png" wx:if="{{editAmount === true}}" bindtap="beEditedAmount" style="width:32rpx;height:32rpx"></image>
+                <image src="/public/images/pen.png" wx:if="{{editAmount === true}}" bindtap="beEditedAmount" style="width:32rpx;height:32rpx"></image>
                 <text wx:if="{{showAmount === true}}" data-name="spend" bindtap="setAmount"> 确定 </text>
             </view>
 
@@ -52,13 +55,11 @@
     </view>
 
     <view class="bottomBox">
-        <button type="primary" size="mini" bindtap='uploadData'> 计算 </button>
+        <button class="text-blue" type="primary" size="mini" bindtap='uploadData'> 计算 </button>
     </view>
 
-
-
     <view class="userinfo">
-        <button type="primary" size="mini" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+        <button class="text-blue" wx:if="{{isNewUser === true}}" type="primary" size="mini" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     </view>
 
 </view>

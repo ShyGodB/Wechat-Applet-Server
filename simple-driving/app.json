@@ -16,20 +16,20 @@
             {
                 "pagePath": "pages/index/index",
                 "text": "首页",
-                "iconPath": "images/index_normal.png",
-                "selectedIconPath": "images/index_selected.png"
+                "iconPath": "public/images/index_normal.png",
+                "selectedIconPath": "public/images/index_selected.png"
             },
             {
                 "pagePath": "pages/add/add",
                 "text": "加油站",
-                "iconPath": "images/add_normal.png",
-                "selectedIconPath": "images/add_selected.png"
+                "iconPath": "public/images/add_normal.png",
+                "selectedIconPath": "public/images/add_selected.png"
             },
             {
                 "pagePath": "pages/user/user",
                 "text": "我",
-                "iconPath": "images/home_normal.png",
-                "selectedIconPath": "images/home_selected.png"
+                "iconPath": "public/images/home_normal.png",
+                "selectedIconPath": "public/images/home_selected.png"
             }
         ]
     },

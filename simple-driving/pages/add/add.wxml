@@ -1,6 +1,6 @@
 <view class="container">
     <view class="topBox">
-        
+        <view class="updateTime"> {{updateTime}} </view>
     </view>
 
     <view class="mainBox">
@@ -16,7 +16,7 @@
         <view class="price">
             <text> 单价： </text>
             <input bindinput='changePrice' id="{{index}}" value="{{price}}" type="digit" placeholder="当前油价" disabled="{{editPrice}}"></input>
-            <image src="/images/pen.png" bindtap="beEditedPrice" style="width:32rpx;height:32rpx"></image>
+            <image src="/public/images/pen.png" bindtap="beEditedPrice" style="width:32rpx;height:32rpx"></image>
         </view> 
 
         <view class="add">
