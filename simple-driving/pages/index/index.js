@@ -29,7 +29,7 @@ Page({
         isDefaultPrice: false,
         isDefaultAmount: false,
 
-        hasUserInfo: true,
+        hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
     /******************************** Top **********************************/
@@ -159,16 +159,15 @@ Page({
 
     // 监听页面加载，可做一些事情
     onLoad() {
-        console.log(app.globalData)
 
         const data_g = app.globalData;
         this.setData({ 
-            price: data_g.gasoline[1].value,
-            amount: data_g.userInfo[0].car_spend,
+            // price: data_g.gasoline[1].value,
+            // amount: data_g.userInfo[0].car_spend,
 
             location: data_g.location,
 
-            isUser: true,
+            isUser: data_g.isUser,
             isDefaultPrice: true,
             isDefaultAmount: true,
             userInfo: data_g.userInfo[0],
@@ -177,52 +176,40 @@ Page({
             updateTime: data_g.updateTime
         });
 
-        // if (app.globalData.userInfo) {
-        //     this.setData({
-        //         userInfo: app.globalData.userInfo,
-        //         hasUserInfo: true
-        //     })
-        // } else if (this.data.canIUse) {
-        //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-        //     // 所以此处加入 callback 以防止这种情况
-        //     app.userInfoReadyCallback = res => {
-        //         this.setData({
-        //             userInfo: res.userInfo,
-        //             hasUserInfo: true
-        //         })
-        //     }
-        // } else {
-        //     // 在没有 open-type=getUserInfo 版本的兼容处理
-        //     wx.getUserInfo({
-        //         success: res => {
-        //             app.globalData.userInfo = res.userInfo
-        //             this.setData({
-        //                 userInfo: res.userInfo,
-        //                 hasUserInfo: true
-        //             })
-        //         }
-        //     })
-        // }
+        if (app.globalData.userInfo) {
+            this.setData({
+                userInfo: app.globalData.userInfo,
+                hasUserInfo: true
+            })
+        } else if (this.data.canIUse) {
+            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+            // 所以此处加入 callback 以防止这种情况
+            app.userInfoReadyCallback = res => {
+                this.setData({
+                    userInfo: res.userInfo,
+                    hasUserInfo: true
+                })
+            }
+        } else {
+            // 在没有 open-type=getUserInfo 版本的兼容处理
+            wx.getUserInfo({
+                success: res => {
+                    app.globalData.userInfo = res.userInfo
+                    this.setData({
+                        userInfo: res.userInfo,
+                        hasUserInfo: true
+                    })
+                }
+            })
+        }
     },
-
-
-
-
-
-
-    //事件处理函数
-    bindViewTap: function () {
-        wx.navigateTo({
-            url: '../logs/logs'
-        })
-    },
-    getUserInfo: function (e) {
-        console.log(e)
-        app.globalData.userInfo = e.detail.userInfo
+    getUserInfo: function (ev) {
+        console.log(ev)
         this.setData({
-            userInfo: e.detail.userInfo,
+            userInfo: ev.detail.userInfo,
             hasUserInfo: true
         })
+        console.log(app.globalData.userInfo)
     }
     
 });
@@ -251,4 +238,23 @@ Page({
  * 1、总值  =>  总次数、总开销、总路程
  * 2、平均  =>  平均路程、开销、油耗
  * 3、数据展示  =>  可以考虑画图 ---- 折线图
+ */
+
+
+
+/*
+ * 用户登录流程
+ * 
+ * 如何判断用户是否为新用户
+ *    获取用户的openid，将其传到服务器，通过比对openid来判断是否为新用户
+ * 
+ * 1、新用户： 
+ *    - 给出授权按钮，引导用户授权
+ *    - 获取用户的openid 与 session_key
+ *    - 授权后，获取用户信息，上传到开发者服务器，将信息存入数据库
+ * 
+ * 
+ * 
+ * 
+ * 2、老用户：
  */
