@@ -12,7 +12,7 @@ const promisePool = pool.promise();
 
 const object = {
     async addUser(data) {
-        const sql = "insert into user(nickname, gender, avatarUrl, city, country, province, openid, session_key) values(?, ?, ?, ?, ?, ?, ?, ?)";
+        const sql = "insert into user(nickname, gender, avatarUrl, city, country, province, openid) values(?, ?, ?, ?, ?, ?, ?)";
         await promisePool.query(sql, data);
     },
 
