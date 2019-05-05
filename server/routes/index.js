@@ -17,20 +17,20 @@ router.post("/onLogin", async (ctx) => {
     const aCode = 'authorization_code';
     const url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecret}&js_code=${code}&grant_type=${aCode}`;
     await axios.get(url)
- 	.then((response) => {
-        data = response.data;
-        openid = data.openid;
-        const getUserPromise = user.getUser(openid);
-        const rows = await getUserPromise;
-        if(rows.length === 0) {
-            ctx.body = {msg: '新用户'}
-        } else {
-            ctx.body = {msg: '老用户'}
-        }
- 	})
- 	.catch((error) => {
-        ctx.body = {msg: error}
- 	});
+     	.then((response) => {
+            data = response.data;
+            openid = data.openid;
+     	})
+     	.catch((error) => {
+            ctx.body = {msg: error}
+     	});
+    const getUserPromise = user.getUser(openid);
+    const rows = await getUserPromise;
+    if(rows.length === 0) {
+        ctx.body = {msg: '新用户'}
+    } else {
+        ctx.body = {msg: '老用户'}
+    }
 });
 
 
