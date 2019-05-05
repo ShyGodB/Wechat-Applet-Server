@@ -1,0 +1,41 @@
+<view class="container">
+    <view class="topBox">
+        
+    </view>
+
+    <view class="mainBox">
+        <view class="choose">
+            <radio-group class="radio-group" bindchange="radioChange">
+                <label class="radio" wx:for="{{gasoline}}" wx:key="{{index}}">
+                    <radio value="{{gasoline[index].value}}" checked="{{gasoline[index].checked}}" />
+                    {{gasoline[index].name}}
+                </label>
+            </radio-group>           
+        </view>
+
+        <view class="price">
+            <text> 单价： </text>
+            <input bindinput='changePrice' id="{{index}}" value="{{price}}" type="digit" placeholder="当前油价" disabled="{{editPrice}}"></input>
+            <image src="/images/pen.png" bindtap="beEditedPrice" style="width:32rpx;height:32rpx"></image>
+        </view> 
+
+        <view class="add">
+            <text> 加油量：</text>
+            <input bindinput='changeNum' value="{{num}}" type="digit" placeholder="加油量/L"></input>
+        </view>
+
+        <view class="cost" wx:if="{{cost.length !== 0}}"> 
+            <text> 花费:  ¥ </text>
+            <text class="cost-text"> {{cost}} </text> 
+        </view>
+    </view>
+
+    <view class="bottomBox">
+        <button type="primary" size="mini" bindtap='uploadData'> 计算 </button>
+    </view>
+</view>
+
+
+
+
+<!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->

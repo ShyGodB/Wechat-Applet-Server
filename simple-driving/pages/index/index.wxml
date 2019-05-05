@@ -3,7 +3,7 @@
         <view class="top-left top">
            <picker mode="selector" bindchange="changeCar" value="{{cars}}" range="{{cars}}">
                 <view class="picker car">
-                    {{cars.length !== 0? cars[0] : add }}
+                    {{cars.length !== 0? cars[0] : '添加' }}
                 </view>
             </picker>
         </view>
@@ -18,25 +18,25 @@
     <view class="mainBox">
         <view class="content">
             <view class="price">
-                <picker mode="selector" bindchange="chooseGasoline" value="{{index}}" range="{{gasoline}}" range-key="type">
-                    <view class="picker">
-                        种类：{{isType !== true? gasoline[index].type : defaultData.gasolineType}}
-                    </view>
-                </picker>
-
-                <view class="unit-price">
-                    <text> 单价： </text>
-                    <input class="gasolinePrice" bindinput='changePrice' id="{{index}}" value="{{isPrice !== true? gasoline[index].price : defaultData.gasolinePrice}}" type="digit" placeholder="当前油价" disabled="{{editPrice}}"></input>
-                    <image src="/images/pen.svg" wx:if="{{editPrice === true}}" bindtap="beEditedPrice" style="width:32rpx;height:32rpx"></image>
-                    <text wx:if="{{showPrice === true}}" data-name="price" bindtap="setPrice"> 确定 </text>
-                </view>            
+                <radio-group class="radio-group" bindchange="radioChange">
+                    <label class="radio" wx:for="{{gasoline}}" wx:key="{{}}">
+                        <radio value="{{item.value}}" checked="{{item.checked}}" />
+                        {{item.name}}
+                    </label>
+                </radio-group>           
             </view>
+
+            <view class="unit-price">
+                <text> 单价： </text>
+                <input class="gasolinePrice" bindinput='changePrice' id="{{index}}" value="{{isDefaultPrice === true? price : gasoline[index].value}}" type="digit" placeholder="当前油价" disabled="{{editPrice}}"></input>
+                <image src="/images/pen.png" bindtap="beEditedPrice" style="width:32rpx;height:32rpx"></image>
+            </view> 
 
             <view class="oil">
                 <text> 油耗：</text>
-                <input class="gasolineAmount" bindinput='changeAmount' value="{{defaultData.carSpend.length !== 0 ? defaultData.carSpend:''}}" type="digit" placeholder="每百公里耗油" disabled="{{editSpend}}"></input>
-                <image src="/images/pen.svg" wx:if="{{editSpend === true}}" bindtap="beEditedSpend" style="width:32rpx;height:32rpx"></image>
-                <text wx:if="{{showSpend === true}}" data-name="spend" bindtap="setSpend"> 确定 </text>
+                <input class="gasolineAmount" bindinput='changeAmount' value="{{isDefaultAmount === true ? amount : ''}}" type="digit" placeholder="每百公里耗油" disabled="{{editAmount}}"></input>
+                <image src="/images/pen.png" wx:if="{{editAmount === true}}" bindtap="beEditedAmount" style="width:32rpx;height:32rpx"></image>
+                <text wx:if="{{showAmount === true}}" data-name="spend" bindtap="setAmount"> 确定 </text>
             </view>
 
             <view class="trip">
@@ -45,10 +45,9 @@
             </view>
         </view>
 
-        <view class="cost" wx:if="{{result.length !== 0}}"> 
-            <text> 结果: </text>
-            <text class="spending"> {{result}} </text> 
-            <text> ¥ </text>
+        <view class="cost" wx:if="{{cost.length !== 0}}"> 
+            <text> 结果:  ¥ </text>
+            <text class="spending"> {{cost}} </text> 
         </view>
     </view>
 
@@ -56,3 +55,14 @@
         <button type="primary" size="mini" bindtap='uploadData'> 计算 </button>
     </view>
 </view>
+
+
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+</view> -->

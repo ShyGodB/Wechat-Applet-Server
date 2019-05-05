@@ -1,21 +1,49 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* pages/main/main.wxss */
+
+.bc-blue {
+    width: 50%;
+    height: 300rpx;
+    text-align: center;
+    background-color: skyblue;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.flex-wrp-row {
+    display: flex;
+    flex-direction: row;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.summary-trip-title, .summary-add-title {
+    background: greenyellow;
+}
+ 
+.item {
+    padding: 20rpx;
+    position: relative;
+}
+ 
+.item-left {
+    flex: 1; /* 重要 */
+    align-items: center;
+}
+ 
+.item-right {
+    position: relative;
+    align-items: center;
 }
 
-.usermotto {
-  margin-top: 200px;
+.nav-group {
+    width: 100%;
+    padding: 8rpx;
+}
+
+.nav-item {
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    color: white;
+    background-color:#708090;
+}
+
+.active {
+    background-color: greenyellow;
 }

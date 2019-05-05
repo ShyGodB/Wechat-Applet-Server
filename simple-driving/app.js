@@ -1,4 +1,3 @@
-//app.js
 App({
     onLaunch: function () {
         // 展示本地存储能力
@@ -6,98 +5,116 @@ App({
         logs.unshift(Date.now())
         wx.setStorageSync('logs', logs)
 
+
         // 登录
         wx.login({
             success: res => {
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
-            }
-        })
-
-        // 从服务器获取已有用户信息
-        const url2 = 'https://www.tripspend.com:8888/getAllUser';
-        // wx.request({
-        //     url: url2,
-        //     method: "get",
-        //     header: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     success: (res) => {
-        //         // console.log(res.data);
-        //         this.globalData.existUser = res.data;
-        //         // this.globalData.userInfo = res.data[0];
-        //         this.globalData.isUser = true;
-        //         // console.log(this.globalData.userInfo)
-        //     },
-        //     fail: (err) => {
-        //         console.log(err);
-        //     },
-        //     complete: () => {
-        //         // console.log("完成");
-        //     }
-        // });
-        // 获取用户信息
-        wx.getSetting({
-            success: res => {
-                if (res.authSetting['scope.userInfo']) {
-                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-                    wx.getUserInfo({
+                if (res.code) {
+                    wx.request({
+                        url: 'https://www.tripspend.com:8888/onLogin',
+                        method: "post",
+                        data: {
+                            code: res.code
+                        },
+                        header: {
+                            "Content-Type": "application/json"
+                        },
                         success: (res) => {
-                            // 可以将 res 发送给后台解码出 unionId
-                            // console.log(res.userInfo);
-                            // this.globalData.userInfo = res.userInfo
-
-                            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                            // 所以此处加入 callback 以防止这种情况
-                            if (this.userInfoReadyCallback) {
-                                this.userInfoReadyCallback(res)
-                            }
-                            // console.log(res.userInfo);
-                            // console.log(this.globalData.userInfo)
-                            if(res.userInfo.nickName !== this.globalData.userInfo.nickname) {
-                                // console.log("执行了这一段代码")
-                                // 添加用户 
+                            this.globalData.userTicket = res.data;
+                            const userTicket = res.data;
+                            // 如果用户是新用户，则添加该用户信息
+                            const openid = res.data.openid;
+                            const openidArray = this.globalData.openidArray;
+                            if (openidArray.length === 0 || openidArray.indexOf(openid) === -1) {
+                                // 从TX获取用户信息
+                                wx.getSetting({
+                                    success: res => {
+                                        if (res.authSetting['scope.userInfo']) {
+                                            // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+                                            wx.getUserInfo({
+                                                success: (res) => {
+                                                    if (this.userInfoReadyCallback) {
+                                                        this.userInfoReadyCallback(res)
+                                                    }
+                                                    wx.request({
+                                                        url: 'https://www.tripspend.com:8888/addUser',
+                                                        method: "post",
+                                                        data: {
+                                                            userInfo: res.userInfo,
+                                                            userTicket: userTicket
+                                                        },
+                                                        header: {
+                                                            "Content-Type": "application/json"
+                                                        },
+                                                        success:(res) => {
+                                                            this.globalData.userInfo = res.data;
+                                                            this.globalData.isUesr = true;
+                                                        },
+                                                        fail(err) {
+                                                            console.log(err);
+                                                        },
+                                                        complete() {
+                                                            console.log("完成");
+                                                        }
+                                                    });
+                                                }
+                                            })
+                                        }
+                                    }
+                                });
+                            } else {
+                                // 不是新用户
+                                // 根据openid获取用户信息，openid从TX提供的api获取
                                 wx.request({
-                                    url: 'https://www.tripspend.com:8888/addUser',
+                                    url: 'https://www.tripspend.com:8888/getUser',
                                     method: "post",
                                     data: {
-                                        userInfo: this.globalData.userInfo
+                                        openid: openid
                                     },
                                     header: {
                                         "Content-Type": "application/json"
                                     },
-                                    success(res) {
-                                        console.log(res.data);
-                                        // that.setData({
-                                        //     result: result
-                                        // })
-                                        // console.log(this)
+                                    success: (res) => {
+                                        // 返回的结果为一个数组，数组长度为0，则该用户为新用户
+                                        this.globalData.userInfo = res.data;
+                                        this.globalData.isUesr = true;
                                     },
-                                    fail(err) {
+                                    fail: (err) => {
                                         console.log(err);
                                     },
-                                    complete() {
+                                    complete: () => {
                                         // console.log("完成");
                                     }
                                 });
+
                             }
+                            
+                        },
+                        fail:(err) => {
+                            console.log(err);
+                        },
+                        complete:() => {
+                            // console.log("完成");
                         }
                     })
+                } else {
+                    console.log('登录失败！' + res.errMsg)
                 }
             }
-        });
-        const url3 = 'https://www.tripspend.com:8888/getUser';
+        })
+
+        
+
+        // 从服务器获取所有老用户的openid，其结果为一个数组 --- openidArray
         wx.request({
-            url: url3,
-            method: "get",
+            url: 'https://www.tripspend.com:8888/listAllOpenid',
+            method: "post",
             header: {
                 "Content-Type": "application/json"
             },
-            success:(res) => {
-                // console.log(res.data);
-                // console.log(this)
-                this.globalData.userInfo = res.data;
-                this.globalData.isUser = true;
-                // console.log(this.globalData.userInfo)
+            success: (res) => {
+                this.globalData.openidArray = res.data;
             },
             fail: (err) => {
                 console.log(err);
@@ -107,10 +124,77 @@ App({
             }
         });
         
+
+        // 定位 并 获取最新油价信息
+        wx.getLocation({
+            type: 'wgs84',
+            success: (res) => {
+                const latitude = res.latitude; // 纬度
+                const longitude = res.longitude; // 经度
+                const url = `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=LUVBZ-4AW34-6YIUD-XKC7G-QSZKK-SBFCQ`;
+                wx.request({
+                    url: url,
+                    method: "GET",
+                    header: {
+                        "Content-Type": "application/json"
+                    },
+                    success: (res) => {
+                        const city = res.data.result.address_component.city;
+                        const province1 = res.data.result.address_component.province;
+                        const province = province1.substring(0, province1.length - 1)
+                        this.globalData.location = ({
+                            city: city.substring(0, city.length - 1),
+                            province: province
+                        });
+                    },
+                    fail: (err) => {
+                        console.log(err);
+                    },
+                    complete: () => {
+                        // 获取实时油价
+                        // const province = this.globalData.location.province;
+                        // const url = `https://api.jisuapi.com/oil/query?appkey=62ea23ffe7a3a991&province=${province}`;
+                        // wx.request({
+                        //     url: url,
+                        //     method: "get",
+                        //     header: {
+                        //         "Content-Type": "application/json"
+                        //     },
+                        //     success:(res) => {
+                        //         const result = res.data.result;
+                        //         this.globalData.updateTime = res.data.result.updatetime;
+                        //         this.globalData.gasoline = [
+                        //             { name: '89#', value: res.data.result.oil89 },
+                        //             { name: '92#', value: res.data.result.oil92, checked: 'true' },
+                        //             { name: '95#', value: res.data.result.oil95 },
+                        //             { name: '0#', value: res.data.result.oil0 },
+                        //         ];
+                        //     },
+                        //     fail: (err) => {
+                        //         console.log(err);
+                        //     },
+                        //     complete: () => {
+                        //         // console.log("完成");
+                        //     }
+                        // });
+                    }
+                });
+            }
+        });
     },
     globalData: {
-        userInfo: null,
-        existUser: null,
-        isUser: false
+        isUser: false,
+        userTicket: {},
+        location: {},
+        userInfo: {},
+        openidArray: [],
+        updateTime: '',
+        gasoline: [
+            { name: '89#', value: '7.01' },
+            { name: '92#', value: '7.20', checked: 'true' },
+            { name: '95#', value: '7.51' },
+            { name: '0#', value: '6.80' }
+        ]
     }
 })
+

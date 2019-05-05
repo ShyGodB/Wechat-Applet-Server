@@ -1,14 +1,34 @@
-<!--index.wxml-->
+<!--pages/main/main.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+    
+    <view class="summary">
+        <view class="summary-trip">
+            <view class="summary-trip-title"> Trip </view>
+            <block wx:for="{{tripItems}}" wx:key="{{}}">
+                <view>
+                    <text class="">{{item.name}}:</text>
+                    <text class="">{{item.value}}</text>
+                    <text class="">{{item.unit}}</text>
+                </view>
+            </block>
+        </view>
+
+        <view class="summary-add">
+            <view class="summary-add-title"> Add </view>
+            <block wx:for="{{addItems}}" wx:key="{{}}">
+                <view>
+                    <text class="">{{item.name}}:</text>
+                    <text class="">{{item.value}}</text>
+                    <text class="">{{item.unit}}</text>
+                </view>
+            </block>
+        </view>
+    </view>
+
+    <view class="nav">
+        <view class="nav-group">
+            <text class="nav-item {{index == currentId ? 'active':''}}" id="{{index}}" wx:for="{{timeInterval}}" wx:key="{{index}}" bindtap='changeBg'> {{item}} </text>
+        </view>
+    </view>
+
 </view>
