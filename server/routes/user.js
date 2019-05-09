@@ -66,13 +66,13 @@ router.post('/updateUser', async (ctx) => {
 	    await updatePricePromise;
 	    ctx.body = {msg: '成功'};
 	    break;
-	case 'spend':
-	    const spend = data[2];
-        const data2 =  [spend, id];
-        const updateCarSpendPromise = user.updateCarSpend(data2);
-        await updateCarSpendPromise;
-        ctx.body = {msg: '成功'};
-        break;
+	case 'amount':
+	    const amount = data[2];
+            const data2 =  [amount, id];
+            const updateAmountPromise = user.updateAmount(data2);
+            await updateAmountPromise;
+            ctx.body = {msg: '成功'};
+            break;
     }
 });
 

@@ -28,8 +28,8 @@ const object = {
         return rows;
     },
 
-    async updateCarSpend(data) {
-        const sql = "update user set car_spend=? where id=?";
+    async updateAmount(data) {
+        const sql = "update user set amount=? where id=?";
         await promisePool.query(sql, data);
     },
 
