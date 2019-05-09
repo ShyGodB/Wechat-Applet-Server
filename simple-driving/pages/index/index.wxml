@@ -1,66 +1,67 @@
-<view class="container bg-orange.light text-blue .flex">
-    <view class="topBox">
-        <view class="top-left top">
+<view class="container flex m-20 p-10">
+    <view class="topBox mb-20 w-100 flex">
+        <view class="top-left top w-100">
            <picker mode="selector" bindchange="changeCar" value="{{cars}}" range="{{cars}}">
-                <view class="picker car">
+                <view class="picker car text-green font-size-40">
                     {{cars.length !== 0? cars[0] : '添加' }}
                 </view>
             </picker>
         </view>
 
-        <view class="top-right top">
-            <view class="picker place">
+        <view class="top-right top w-100">
+            <view class="picker place text-danger text-right font-size-40">
                 {{location.city}}
             </view>
         </view>
     </view>
 
-    <view class="mainBox">
-        <view class="content">
-
-            <view class="updateTime"> {{updateTime}} </view>
-
-            <view class="price">
-                <radio-group class="radio-group" bindchange="radioChange">
-                    <label class="radio" wx:for="{{gasoline}}" wx:key="{{}}">
+    <view class="mainBox w-100 flex mb-20">
+        <view class="content w-100">
+            <view class="updateTime mb-10 p-10 font-size-40">  
+                <text> 调价时间: </text>
+                <text class="text-danger ml-10">  {{updateTime}} </text>
+            </view>
+            <view class="price cu-list menu">
+                <radio-group class="radio-group w-100 mb-20" bindchange="radioChange">
+                    <view class="radio p-10 content" wx:for="{{gasoline}}" wx:key="{{}}">
                         <radio value="{{item.value}}" checked="{{item.checked}}" />
-                        {{item.name}}
-                    </label>
-                </radio-group>           
+                        <text class="font-size-44 mr-6"> {{item.name}} </text>
+                        <text class="font-size-32 text-secondary"> {{item.type}} </text>
+                        <label class="float-right">
+                            <text class="font-size-44"> {{item.value}} </text>
+                            <text class="font-size-32 text-secondary"> （元/升） </text>
+                        </label>
+                    </view>
+                </radio-group>  
+            </view>  
+
+            <view class="cu-form-group">
+                <view class="title">单价</view>
+                <input class="" bindinput='changePrice' id="{{index}}" value="{{isDefaultPrice === true? price : gasoline[index].value}}" type="digit" placeholder="汽油价格"></input>
+                <text class="font-size-32 text-secondary float-right"> （元/升） </text>
+            </view>
+            <view class="cu-form-group">
+                <view class="title">油耗</view>
+                <input bindinput='changeAmount' value="{{isDefaultAmount === true ? amount : ''}}" type="digit" placeholder="汽车油耗参数"></input>
+                <text class="font-size-32 text-secondary float-right"> （百公里/升） </text>
+            </view>
+            <view class="cu-form-group mb-20">
+                <view class="title">路程</view>
+                <input class="tripAmount text-danger font-size-44 d-inline-block" bindinput='changeTrip' value="{{trip}}" type="digit" placeholder="大致路程"></input>
+                <text class="font-size-32 text-secondary float-right"> （公里） </text>
             </view>
 
-            <view class="unit-price">
-                <text> 单价： </text>
-                <input class="gasolinePrice" bindinput='changePrice' id="{{index}}" value="{{isDefaultPrice === true? price : gasoline[index].value}}" type="digit" placeholder="当前油价" disabled="{{editPrice}}"></input>
-                <image src="/public/images/pen.png" bindtap="beEditedPrice" style="width:32rpx;height:32rpx"></image>
-            </view> 
-
-            <view class="oil">
-                <text> 油耗：</text>
-                <input class="gasolineAmount" bindinput='changeAmount' value="{{isDefaultAmount === true ? amount : ''}}" type="digit" placeholder="每百公里耗油" disabled="{{editAmount}}"></input>
-                <image src="/public/images/pen.png" wx:if="{{editAmount === true}}" bindtap="beEditedAmount" style="width:32rpx;height:32rpx"></image>
-                <text wx:if="{{showAmount === true}}" data-name="spend" bindtap="setAmount"> 确定 </text>
-            </view>
-
-            <view class="trip">
-                <text> 行程：</text>
-                <input class="tripAmount" bindinput='changeTrip' value="{{trip}}" type="digit" placeholder="行程数" placeholder-class='place-trip'></input>
+            <view class="cu-form-group mb-30">
+                <view class="title"> 结果： ¥ </view>
+                <text class="text-danger font-size-44"> {{cost}} </text>
+                <text class="font-size-32 text-secondary float-right"> （元） </text>
             </view>
         </view>
-
-        <view class="cost" wx:if="{{cost.length !== 0}}"> 
-            <text> 结果:  ¥ </text>
-            <text class="spending"> {{cost}} </text> 
-        </view>
     </view>
 
-    <view class="bottomBox">
-        <button class="text-blue" type="primary" size="mini" bindtap='uploadData'> 计算 </button>
+    <view class="bottomBox w-100 flex">
+        <button class="weui-btn calculate" type="primary" bindtap='uploadData'> 计算 </button>
     </view>
-
-    <view class="userinfo">
-        <button class="text-blue" wx:if="{{isNewUser === true}}" type="primary" size="mini" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    </view>
-
 </view>
+
 

@@ -1,11 +1,3 @@
-@import "public/colorui/main.wxss";
-@import "public/colorui/icon.wxss";
-
-.container {
-  height: 100%;
-  margin: 20rpx;
-  padding: 10rpx;
-  flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-} 
+@import "public/css/icon.wxss";
+@import "public/css/main.wxss";
+@import "public/css/my.wxss";

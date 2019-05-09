@@ -1,0 +1,168 @@
+/* 自定义CSS */
+
+page {
+    background: #F0F0F0;
+}
+
+.container {
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+
+/* 背景颜色 */
+.bg-danger {
+    background-color: #FF0000;
+}
+
+
+/* 外边距 ---- margin */
+.mt-10 {
+    margin-top: 10rpx;
+}
+.mt-20 {
+    margin-top: 20rpx;
+}
+.mt-30 {
+    margin-top: 30rpx;
+}
+.mt-40 {
+    margin-top: 40rpx;
+}
+
+
+.mb-10 {
+    margin-bottom: 10rpx;
+}
+.mb-20 {
+    margin-bottom: 20rpx;
+}
+.mb-30 {
+    margin-bottom: 30rpx;
+}
+.mb-40 {
+    margin-bottom: 40rpx;
+}
+
+.ml-10 {
+    margin-left: 10rpx;
+}
+.ml-20 {
+    margin-left: 20rpx;
+}
+.ml-30 {
+    margin-left: 30rpx;
+}
+.ml-40 {
+    margin-left: 40rpx;
+}
+
+.mr-6 {
+    margin-right: 6rpx;
+}
+.mr-10 {
+    margin-right: 10rpx;
+}
+.mr-20 {
+    margin-right: 20rpx;
+}
+.mr-30 {
+    margin-right: 30rpx;
+}
+.mr-40 {
+    margin-right: 40rpx;
+}
+
+
+/* 内边距 ---- padding */
+.p-10 {
+    padding: 10rpx;
+}
+.p-20 {
+    padding: 20rpx;
+}
+.pr-10 {
+    padding-right: 10rpx;
+}
+
+
+/* 字体 ----  大小 */
+.font-size-24 {
+    font-size: 24rpx;
+}
+.font-size-28 {
+    font-size: 28rpx;
+}
+.font-size-32 {
+    font-size: 32rpx;
+}
+.font-size-36 {
+    font-size: 36rpx;
+}
+.font-size-40 {
+    font-size: 40rpx;
+}
+.font-size-44 {
+    font-size: 44rpx;
+}
+.font-size-48 {
+    font-size: 48rpx;
+}
+
+/* 字体 ----  颜色 */
+.text-secondary {
+    color: #aaaaaa;
+}
+.text-green {
+    color: #00FF00;
+}
+.text-danger {
+    color: #FF0000;
+}
+.text-right {
+    text-align: right;
+}
+.text-white {
+    color: #FFFFFF;
+}
+
+
+/* 浮动 */
+.float-right {
+    float: right;
+}
+.float-left {
+    float: left;
+}
+
+
+/* 弹性布局 */
+.flex {
+    display: flex;
+}
+
+/* 元素宽度 */
+.w-100 {
+    width: 100%;
+}
+.w-75 {
+    width: 75%;
+}
+.w-50 {
+    width: 50%;
+}
+.w-25 {
+    width: 25%;
+}
+
+
+
+.align-items-center {
+    align-items: center;
+}
+
+d-inline-block {
+    display: inline-block;
+}

@@ -3,13 +3,16 @@
         "pages/index/index",
         "pages/logs/logs",
         "pages/add/add",
-        "pages/user/user"
+        "pages/user/user",
+        "pages/authorization/authorization"
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarBackgroundColor": "#000000",
         "navigationBarTitleText": "WeChat",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "white",
+        "enablePullDownRefresh": true,
+        "navigationBarTitleText": "white"
     },
     "tabBar": {
         "list": [

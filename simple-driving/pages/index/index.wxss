@@ -1,77 +1,20 @@
 @import "/app.wxss";
+
 /* CSS顺序 => 全局 -> 从上向下 */
+
 /* 全局 */
-.topBox, .mainBox, .bottomBox {
-    width: 100%;
-    display: flex;
-    margin-bottom: 60rpx;
-}
 
 
-/* topBox */
-.topBox {
-    float: left;
-}
-
-.top-left, .top-right{
-    width: 100%;
-}
-
-.top-left .car {
-    color: green;
-}
-
-.top-right .place {
-    text-align: right;
-    color: red;
-}
-
-.piker {
-    text-align: end;
-}
 
 
 /* mainBox */
-.updateTime {
-    margin-bottom: 30rpx;
-}
-
-.content {
-    margin-bottom: 30rpx;
-}
-
-.content .price, .oil, trip {
-    margin-bottom: 30rpx;
-}
-
-.unit-price, .oil, .trip {
-    display: flex;
+.radio, .updateTime {
+    background-color: #FFFFFF;
     align-items: center;
 }
 
-.unit-price input, .oil input, .trip input {
-    display: inline-block;
-}
-
-.radio-group {
-    margin-bottom: 20rpx;
-}
-
-.cost {
-    position: absolute;
-    top: 40%
-}
-
-.spending {
-    color: red;
-}
-
-
-/* bottomBox */
-.bottomBox button {
-    margin:0;
-    position: absolute;
-    top: 50%;
+.calculate {
+    width: 60%;
 }
 
 
@@ -80,25 +23,42 @@
 
 
 
-/* 附加的 */
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
 
-.userinfo-nickname {
-  color: #aaa;
-}
 
-.usermotto {
-  margin-top: 200px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

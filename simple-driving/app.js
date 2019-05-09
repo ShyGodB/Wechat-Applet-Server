@@ -1,15 +1,12 @@
 App({
-    onLaunch: function () {
-        // 展示本地存储能力
+    onLaunch() {
+        // 展示本地存储能力 ---- 存储日志
         var logs = wx.getStorageSync('logs') || []
         logs.unshift(Date.now())
         wx.setStorageSync('logs', logs)
 
-
-        // 登录
         wx.login({
-            success: res => {
-                // 发送 res.code 到后台换取 openId, sessionKey, unionId
+            success:(res) => {
                 if (res.code) {
                     wx.request({
                         url: 'https://www.tripspend.com:8888/onLogin',
@@ -20,70 +17,29 @@ App({
                         header: {
                             "Content-Type": "application/json"
                         },
-                        success: (res) => {
-                            const data = res.data;
-                            if(data.code === '失败') {
-                                console.log(data.msg);
+                        success:(res) => {
+                            const code = res.data.code;
+                            const msg = res.data.msg;
+                            if(code === '失败') {
+                                console.log(msg);
                             } else {
-                                if(data.msg === '老用户') {
-                                    this.globalData.userInfo = data.userInfo;
-                                    
-                                    this.globalData.isNewUser = false;
-                                    wx.getStorage({
-                                        key: this.globalData.userInfo.openid,
-                                        success: (res) => {
-                                            if(res.data) {
-                                                console.log('获取成功，值为：' + res.data);
-                                            } else {
-                                                wx.login({
-                                                    success: res => {
-                                                        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                                                        if (res.code) {
-                                                            wx.request({
-                                                                url: 'https://www.tripspend.com:8888/getSessionKey',
-                                                                method: "post",
-                                                                data: {
-                                                                    code: res.code
-                                                                },
-                                                                header: {
-                                                                    "Content-Type": "application/json"
-                                                                },
-                                                                success: (res) => {
-                                                                    console.log(res.data);
-                                                                    wx.setStorage({
-                                                                        key: this.globalData.userInfo.openid,
-                                                                        data: res.data.session_key,
-                                                                    })
-                                                                },
-                                                            })
-                                                        } else {
-                                                            console.log('获取失败!' + res.errMsg)
-                                                        }
-                                                    }
-                                                })
-                                            }
-                                        },
-                                    })
-                                } else {
+                                if(msg === '新用户') {
                                     this.globalData.isNewUser = true;
+                                    this.globalData.isUser = false;
+                                } else {
+                                    this.globalData.isNewUser = false;
+                                    this.globalData.userInfo = res.data.userInfo;
+                                    this.globalData.isUser = true;
                                 }
-                            }   
-                        },
-                        fail:(err) => {
-                            console.log(err);
-                        },
-                        complete:() => {
-                            // console.log("完成");
-                            
+                            }
                         }
-                    })
+                    }) 
                 } else {
-                    console.log('登录失败！' + res.errMsg)
+                    console.log(res.errMsg);
                 }
             }
         })
 
-        
     },
     onShow() {
         // 定位 并 获取最新油价信息
@@ -108,9 +64,6 @@ App({
                             province: province
                         });
                     },
-                    fail: (err) => {
-                        console.log(err);
-                    },
                     complete: () => {
                         // 获取实时油价
                         // const province = this.globalData.location.province;
@@ -130,12 +83,6 @@ App({
                         //             { name: '95#', value: res.data.result.oil95 },
                         //             { name: '0#', value: res.data.result.oil0 },
                         //         ];
-                        //     },
-                        //     fail: (err) => {
-                        //         console.log(err);
-                        //     },
-                        //     complete: () => {
-                        //         // console.log("完成");
                         //     }
                         // });
                     }
@@ -146,106 +93,14 @@ App({
     globalData: {
         isNewUser: false,
         isUser: false,
-        userTicket: {},
         location: {},
         userInfo: {},
-        openidArray: [],
-        updateTime: '2019-5-3 12:00',
+        updateTime: '2019-5-6 12:00:00',
         gasoline: [
-            { name: '89#', value: '7.01' },
-            { name: '92#', value: '7.20', checked: 'true' },
-            { name: '95#', value: '7.51' },
-            { name: '0#', value: '6.80' }
+            { name: '89#', value: '7.01', type: '汽油' },
+            { name: '92#', value: '7.20', checked: 'true', type: '汽油' },
+            { name: '95#', value: '7.51', type: '汽油' },
+            { name: '0#', value: '6.80', type: '汽油' }
         ]
     }
 })
-
-
-
-
-// const userTicket = res.data;
-// // 如果用户是新用户，则添加该用户信息
-// const openid = res.data.openid;
-// const openidArray = this.globalData.openidArray;
-// if (openidArray.length === 0 || openidArray.indexOf(openid) === -1) {
-//     // 从TX获取用户信息
-//     wx.getSetting({
-//         success: res => {
-//             if (res.authSetting['scope.userInfo']) {
-//                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-//                 wx.getUserInfo({
-//                     success: (res) => {
-//                         if (this.userInfoReadyCallback) {
-//                             this.userInfoReadyCallback(res)
-//                         }
-//                         wx.request({
-//                             url: 'https://www.tripspend.com:8888/addUser',
-//                             method: "post",
-//                             data: {
-//                                 userInfo: res.userInfo,
-//                                 userTicket: userTicket
-//                             },
-//                             header: {
-//                                 "Content-Type": "application/json"
-//                             },
-//                             success:(res) => {
-//                                 this.globalData.userInfo = res.data;
-//                                 this.globalData.isUesr = true;
-//                             },
-//                             fail(err) {
-//                                 console.log(err);
-//                             },
-//                             complete() {
-//                                 console.log("完成");
-//                             }
-//                         });
-//                     }
-//                 })
-//             }
-//         }
-//     });
-// } else {
-//     // 不是新用户
-//     // 根据openid获取用户信息，openid从TX提供的api获取
-//     wx.request({
-//         url: 'https://www.tripspend.com:8888/getUser',
-//         method: "post",
-//         data: {
-//             openid: openid
-//         },
-//         header: {
-//             "Content-Type": "application/json"
-//         },
-//         success: (res) => {
-//             // 返回的结果为一个数组，数组长度为0，则该用户为新用户
-//             this.globalData.userInfo = res.data;
-//             this.globalData.isUesr = true;
-//         },
-//         fail: (err) => {
-//             console.log(err);
-//         },
-//         complete: () => {
-//             // console.log("完成");
-//         }
-//     });
-
-// }
-
-
-// 从服务器获取所有老用户的openid，其结果为一个数组 --- openidArray
-// wx.request({
-//     url: 'https://www.tripspend.com:8888/listAllOpenid',
-//     method: "post",
-//     header: {
-//         "Content-Type": "application/json"
-//     },
-//     success: (res) => {
-//         this.globalData.openidArray = res.data;
-//     },
-//     fail: (err) => {
-//         console.log(err);
-//     },
-//     complete: () => {
-//         // console.log("完成");
-//     }
-// });

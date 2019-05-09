@@ -1,6 +1,56 @@
 @import "/app.wxss";
+page {
+    margin: 0;
+    padding: 0;
+    background-color: #aaaaaa;
+}
 
-.bc-blue {
+.top {
+    height: 300rpx;
+    background-color: skyblue;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.userinfo-avatar {
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+}
+
+.main .main-content {
+    background-color: #FFFFFF;
+    border: 2rpx solid #FFFFFF;
+    border-radius: 20rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .bc-blue {
     width: 50%;
     height: 300rpx;
     text-align: center;
@@ -22,7 +72,7 @@
 }
  
 .item-left {
-    flex: 1; /* 重要 */
+    flex: 1; /* 重要 
     align-items: center;
 }
  
@@ -46,4 +96,4 @@
 
 .active {
     background-color: greenyellow;
-}
+} */

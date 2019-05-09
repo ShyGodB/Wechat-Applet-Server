@@ -54,7 +54,7 @@ page {
 	--blackShadow: rgba(26, 26, 26, 0.2);
 
 	background-color: var(--ghostWhite);
-	font-size: 40rpx;
+	font-size: 28rpx;
 	color: var(--black);
 	font-family: Helvetica Neue, Helvetica, sans-serif;
 }
@@ -1467,9 +1467,9 @@ button.icon.lg {
 
 .cu-list.grid>.cu-item text {
 	display: block;
-	margin-top: 10rpx;
-	color: #888;
-	font-size: 26rpx;
+	margin-top: 6rpx;
+	/* color: #888; */
+	/* font-size: 26rpx; */
 	line-height: 40rpx
 }
 

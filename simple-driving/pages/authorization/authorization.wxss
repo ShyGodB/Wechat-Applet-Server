@@ -1,0 +1,50 @@
+/* Top */
+.icon-box {
+    margin-bottom: 40rpx;
+}
+
+.top {
+    text-align: center;
+}
+
+.top-title {
+    font-size: 36rpx;
+    color: #000000;
+    margin-bottom: 10rpx;
+}
+.top-instruction {
+    font-size: 28rpx;
+    color: #aaaaaa;
+    margin-bottom: 40rpx;
+}
+
+
+/* Main */
+.main-userinfo, .main-index {
+    margin: 20rpx 0;
+}
+
+.main-userinfo, .main-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+/* Bottom */
+.bottom {
+    margin-top: 200rpx;
+    bottom: 40rpx;
+}
+
+.bottom .bottom-note {
+    font-size: 28rpx;
+    color: #aaaaaa;
+    text-align: center;
+    margin-bottom: 40rpx;
+}
+
+.weui-btn {
+    width: 60%;
+}

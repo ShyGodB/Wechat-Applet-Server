@@ -1,27 +1,65 @@
 @import "/app.wxss";
 
-.topBox {
-    width: 100%;
-    height: 30rpx;
-    background-color: bisque;
-    margin-bottom: 20rpx;
+/* CSS顺序 => 全局 -> 从上向下 */
+
+/* 全局 */
+
+
+
+
+/* mainBox */
+.radio, .updateTime {
+    background-color: #FFFFFF;
+    align-items: center;
 }
 
-.price, .add{
-    display: flex;
-}
-.price input, .add input {
-    display: inline-block;
+
+.calculate {
+    width: 60%;
 }
 
-.choose, .price, .add, .cost {
-    margin-bottom: 30rpx;
-}
 
-.cost-text {
-    color: red
-}
 
-.updateTime {
-    margin-bottom: 30rpx;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
