@@ -68,9 +68,14 @@ const object = {
         await promisePool.query(sql, data);
     },
 
+    async updateAddress(data) {
+        const sql = "update user set address=? where id = ?";
+        await promisePool.query(sql, data);
+    },
+
     async addFeedback(data) {
-	const sql = "insert into feedback(user_id, user_name, type, title, msg, mobile, email, qq) values(?, ?, ?, ?, ?, ?, ?, ?)";
-	await promisePool.query(sql, data);
+        const sql = "insert into feedback(user_id, user_name, type, title, msg, mobile, email, qq) values(?, ?, ?, ?, ?, ?, ?, ?)";
+        await promisePool.query(sql, data);
     }
 
 };

@@ -58,43 +58,86 @@ router.post('/updateUser', async (ctx) => {
     const data = ctx.request.body;
     const id = data[0];
     const name = data[1];
+    console.log(id, name);
     switch(name) {
-	case 'price':
-	    const price = data[2];
-	    const data1 =  [price, id];
-	    const updatePricePromise = user.updatePrice(data1);
-	    await updatePricePromise;
-	    ctx.body = {msg: '成功'};
-	    break;
-	case 'amount':
-	    const amount = data[2];
-            const data2 =  [amount, id];
-            const updateAmountPromise = user.updateAmount(data2);
-            await updateAmountPromise;
-            ctx.body = {msg: '成功'};
-            break;
-	case '价格':
-            const price = data[2];
-            const data1 =  [price, id];
-            const updatePricePromise = user.updatePrice(data1);
+    	case 'price':
+    	    const price1 = data[2];
+    	    const data1 = [price1, id];
+    	    const updatePricePromise = user.updatePrice(data1);
+    	    await updatePricePromise;
+    	    ctx.body = {msg: '成功'};
+    	    break;
+        case '价格':
+            const price2 = data[2];
+            const data2 = [price2, id];
+            const updatePricePromise = user.updatePrice(data2);
             await updatePricePromise;
             ctx.body = {msg: '成功'};
             break;
-	case '油耗':
-            const amount = data[2];
-            const data2 =  [amount, id];
-            const updateAmountPromise = user.updateAmount(data2);
+    	case 'amount':
+    	    const amount1 = data[2];
+            const data3 = [amount1, id];
+            const updateAmountPromise = user.updateAmount(data3);
             await updateAmountPromise;
             ctx.body = {msg: '成功'};
             break;
-	case '昵称':
-            const nickname = data[2];
-            const data2 =  [nickname, id];
-            const updateAmountPromise = user.updateAmount(data2);
+    	case '油耗':
+            const amount2 = data[2];
+            const data4 = [amount2, id];
+            const updateAmountPromise = user.updateAmount(data4);
             await updateAmountPromise;
             ctx.body = {msg: '成功'};
-            break;        
-    }
+            break;
+        case '油型':
+            const gasoline = data[2];
+            const data5 = [gasoline, id];
+            const updateGasolinePromise = user.updateGasoline(data5);
+            await updateGasolinePromise;
+            ctx.body = {msg: '成功'};
+            break;
+    	case '昵称':
+            const nickname = data[2];
+            const data6 = [nickname, id];
+            const updateNicknamePromise = user.updateNickname(data6);
+            await updateNicknamePromise;
+            ctx.body = {msg: '成功'};
+            break;
+        case '手机':
+            const mobile = data[2];
+            const data7 = [mobile, id];
+            const updateMobilePromise = user.updateMobile(data7);
+            await updateMobilePromise;
+            ctx.body = {msg: '成功'};
+            break;
+        case '性别':
+            const gender = data[2];
+            const data8 = [gender, id];
+            const updateGenderPromise = user.updateGender(data8);
+            await updateGenderPromise;
+            ctx.body = {msg: '成功'};
+            break;
+        case '国籍':
+            const country = data[2];
+            const data9 = [country, id];
+            const updateCountryPromise = user.updateCountry(data9);
+            await updateCountryPromise;
+            ctx.body = {msg: '成功'};
+            break;
+        case '生日':
+            const birthday = data[2];
+            const data10 = [birthday, id];
+            const updateBirthdayPromise = user.updateBirthday(data10);
+            await updateBirthdayPromise;
+            ctx.body = {msg: '成功'};
+            break;
+        case '地址':
+            const address = data[2];
+            const data11 = [address, id];
+            const updateAddressPromise = user.updateAddress(data1);
+            await updateAddressPromise;
+            ctx.body = {msg: '成功'};
+            break;
+        }
 });
 
 // 添加用户反馈
