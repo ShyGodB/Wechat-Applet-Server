@@ -11,11 +11,13 @@ router.post("/addTripRecord", async (ctx) => {
     const amount = uploadedData.amount;
     const trip = uploadedData.trip;
     const cost = uploadedData.cost;
-    const data = [userId, price, amount, trip, cost];
+    const ms = uploadedData.ms;
+    const time = uploadedData.time;
+    const data = [userId, price, amount, trip, cost, ms, time];
     console.log(data);
     const addTripRecordPromise = drive.addTripRecord(data);
     await addTripRecordPromise;
-    ctx.body = {cost: cost}
+    ctx.body = {msg: '新增数据成功'};
 });
 
 // 获取用户出行记录

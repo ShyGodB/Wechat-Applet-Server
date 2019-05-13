@@ -13,7 +13,7 @@ const promisePool = pool.promise();
 const object = {
 
     async addTripRecord(data) {
-        const sql = "insert into record_driving(user_id, price, amount, trip, cost) values(?, ?, ?, ?, ?)";
+        const sql = "insert into record_driving(user_id, price, amount, trip, cost, ms, time) values(?, ?, ?, ?, ?, ?, ?)";
         await promisePool.query(sql, data);
     },
 

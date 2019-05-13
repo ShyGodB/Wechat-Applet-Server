@@ -10,11 +10,13 @@ router.post("/addGasolineRecord", async (ctx) => {
     const price = uploadedData.price;
     const num = uploadedData.num;
     const cost = uploadedData.cost;
-    const data = [userId, price, num, cost];
+    const ms = uploadedData.ms;
+    const time = uploadedData.time;
+    const data = [userId, price, num, cost, ms, time];
     console.log(data);
     const addGasolineRecordPromise = add.addGasolineRecord(data);
     await addGasolineRecordPromise;
-    ctx.body = {cost: cost}
+    ctx.body = {msg: '新增数据成功'};
 });
 
 // 获取用户出行记录
