@@ -1,18 +1,21 @@
 {
     "pages": [
+        "pages/feedback/feedback",
         "pages/index/index",
         "pages/logs/logs",
         "pages/add/add",
         "pages/user/user",
-        "pages/authorization/authorization"
+        "pages/authorization/authorization",
+        "pages/data/data",
+        "pages/info/info",
+        "pages/modal/modal" 
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#000000",
         "navigationBarTitleText": "WeChat",
         "navigationBarTextStyle": "white",
-        "enablePullDownRefresh": true,
-        "navigationBarTitleText": "white"
+        "enablePullDownRefresh": true
     },
     "tabBar": {
         "list": [

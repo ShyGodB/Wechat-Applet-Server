@@ -1220,7 +1220,7 @@ button.icon.lg {
 }
 
 .cu-list+.cu-list {
-	margin-top: 30rpx
+	margin-top: 0
 }
 
 .cu-list>.cu-item {
@@ -1478,7 +1478,8 @@ button.icon.lg {
 	display: block;
 	margin-top: 20rpx;
 	width: 100%;
-	font-size: 48rpx
+	font-size: 32rpx;
+    color: var(--grey);
 }
 
 .cu-list.grid>.cu-item .cu-tag {

@@ -1,13 +1,6 @@
 @import "/app.wxss";
 
-/* CSS顺序 => 全局 -> 从上向下 */
 
-/* 全局 */
-
-
-
-
-/* mainBox */
 .radio, .updateTime {
     background-color: #FFFFFF;
     align-items: center;

@@ -1,0 +1,388 @@
+<view class="container">
+    <!-- 头部 -- 主导航 -->
+    <view class="header navbar-main">
+        <scroll-view scroll-x class="bg-green nav text-center">
+            <view class="cu-item {{index==mainTabCur?'text-white cur':''}}" wx:for="{{nav}}" wx:key bindtap="mainTabSelect" data-id="{{index}}">
+                <text class="cuIcon-{{item.icon}}"></text> {{item.name}}
+            </view>
+        </scroll-view>
+    </view>
+    <!-- 主体部分 -- 数据展示与分析 -->
+    <view class="main">
+        <!-- 出行数据展示与分析 -->
+        <view class="data-trip" wx:if="{{mainTabCur === 0}}">
+            <!-- 宫格展示总体数据 -->
+            <view class="grids mb-10">
+                <view wx:if= "{{mainTabCur === 0}}" class="grids-trip">
+                    <view wx:if="{{hasUserData === true}}" class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
+                        <view class="cu-item" wx:for="{{tripItems.all}}" wx:key wx:if="{{index<gridCol}}">
+                            <text class="font-size-44 text-{{item.color}}">{{item.value}}</text>
+                            <text class="cuIcon-{{item.icon}}">{{item.name}}</text>
+                        </view>
+                        <view class="cu-item" wx:for="{{tripItems.equal}}" wx:key wx:if="{{index<gridCol}}">
+                            <text class="font-size-44 text-{{item.color}}">{{item.value}}</text>
+                            <text class="cuIcon-{{item.icon}}">{{item.name}}</text>
+                        </view>
+                    </view> 
+
+                    <view wx:else>
+                        暂无数据
+                    </view>     
+                </view>  
+            </view>
+
+            <!-- 数据分析及详细展示模块 -->
+            <view class="analysis mb-10">
+                <!-- 副导航 -->
+                <view class="analysis-nav mb-10">
+                    <scroll-view scroll-x class="bg-white nav text-center">
+                        <view class="cu-item {{index==secondTabCur?'text-green cur':''}}" wx:for="{{date}}" wx:key bindtap="secondTabSelect" data-id="{{index}}" data-name="{{item.zh}}">
+                            {{item.zh}}
+                        </view>
+                    </scroll-view>
+                </view>
+
+                <!-- 详细展示 -->
+                <view class="analysis-list">  
+                    <!-- 一天（24小时）之内的数据  -->
+                    <view class="day" wx:if="{{navName === '天'}}">
+                        <view class="data-num mb-10"> 
+                            <scroll-view scroll-x class="bg-white nav text-center">
+                                <view class="cu-item text-red text-bold text-xxl">
+                                    {{tripItems.day.length}}
+                                </view>
+                            </scroll-view>
+                        </view>
+
+                        <view  wx:if="{{tripItems.day.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{tripItems.day}}" wx:key>
+                            <view class="cu-item">
+                                <view class="content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    {{item.price}}
+                                    <text class="text-blue"> {{item.amount}} </text>
+                                    <text class="text-yello"> {{item.trip}} </text>
+                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-green"> {{item.time}} </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
+                        <view class="text-sl text-red text-center" wx:if="{{tripItems.day.length === 0}}">
+                            暂无日数据
+                        </view> 
+                    </view>
+                    
+                    <!-- 一周（7天）之内的数据  -->
+                    <view class="week" wx:if="{{navName === '周'}}">
+                        <view class="data-num mb-10"> 
+                            <scroll-view scroll-x class="bg-white nav text-center">
+                                <view class="cu-item text-red text-bold text-xxl">
+                                    {{tripItems.week.length}}
+                                </view>
+                            </scroll-view>
+                        </view>
+
+                        <view wx:if="{{tripItems.week.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{tripItems.week}}" wx:key>
+                            <view class="cu-item">
+                                <view class="content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    {{item.price}}
+                                    <text class="text-blue"> {{item.amount}} </text>
+                                    <text class="text-yello"> {{item.trip}} </text>
+                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-green"> {{item.time}} </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
+                        <view class="text-sl text-red text-center" wx:if="{{tripItems.week.length === 0}}">
+                            暂无周数据
+                        </view>
+                    </view>
+
+                    <!-- 一月（30天）之内的数据  -->
+                    <view class="month" wx:if="{{navName === '月'}}">
+                        <view class="data-num mb-10"> 
+                            <scroll-view scroll-x class="bg-white nav text-center">
+                                <view class="cu-item text-red text-bold text-xxl">
+                                    {{tripItems.month.length}}
+                                </view>
+                            </scroll-view>
+                        </view>
+
+                        <view wx:if="{{tripItems.month.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{tripItems.month}}" wx:key>
+                            <view class="cu-item">
+                                <view class="content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    {{item.price}}
+                                    <text class="text-blue"> {{item.amount}} </text>
+                                    <text class="text-yello"> {{item.trip}} </text>
+                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-green"> {{item.time}} </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
+                        <view class="text-sl text-red text-center" wx:if="{{tripItems.month.length === 0}}">
+                            暂无月数据
+                        </view>
+                    </view>
+
+                    <!-- 半年（182天）之内的数据  -->
+                    <view class="half-year" wx:if="{{navName === '半年'}}">
+                        <view class="data-num mb-10"> 
+                            <scroll-view scroll-x class="bg-white nav text-center">
+                                <view class="cu-item text-red text-bold text-xxl">
+                                    {{tripItems.halfYear.length}}
+                                </view>
+                            </scroll-view>
+                        </view>
+
+                        <view wx:if="{{tripItems.halfYear.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{tripItems.halfYear}}" wx:key>
+                            <view class="cu-item">
+                                <view class="content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    {{item.price}}
+                                    <text class="text-blue"> {{item.amount}} </text>
+                                    <text class="text-yello"> {{item.trip}} </text>
+                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-green"> {{item.time}} </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+
+                        <view class="text-sl text-red text-center" wx:if="{{tripItems.halfYear.length === 0}}">
+                            暂无半年数据
+                        </view>
+                    </view>
+
+                    <!-- 一年（365天）之内的数据  -->
+                    <view class="year" wx:if="{{navName === '一年'}}">
+                        <view class="data-num mb-10"> 
+                            <scroll-view scroll-x class="bg-white nav text-center">
+                                <view class="cu-item text-red text-bold text-xxl">
+                                    {{tripItems.year.length}}
+                                </view>
+                            </scroll-view>
+                        </view>
+
+                        <view wx:if="{{tripItems.year.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{tripItems.year}}" wx:key>
+                            <view class="cu-item">
+                                <view class="content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    {{item.price}}
+                                    <text class="text-blue"> {{item.amount}} </text>
+                                    <text class="text-yello"> {{item.trip}} </text>
+                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-green"> {{item.time}} </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>  
+
+                        <view class="text-sl text-red text-center" wx:if="{{tripItems.year.length === 0}}">
+                            暂无年数据
+                        </view>
+                    </view>           
+                </view>
+            </view>
+        </view>
+
+        <!-- 加油数据展示与分析 -->
+        <view class="data-add" wx:if="{{mainTabCur === 1}}">
+            <!-- 宫格展示总体数据 -->
+            <view class="grids mb-10">
+                <view class="grids-add">
+                    <view wx:if="{{hasUserData === true}}" class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
+                        <view class="cu-item" wx:for="{{addItems.all}}" wx:key wx:if="{{index<gridCol}}">
+                            <text class="font-size-44 text-{{item.color}}">{{item.value}}</text>
+                            <text class="cuIcon-{{item.icon}} text-red">{{item.name}}</text>
+                        </view>
+                        <view class="cu-item" wx:for="{{addItems.equal}}" wx:key wx:if="{{index<gridCol}}">
+                            <text class="font-size-44 text-{{item.color}}">{{item.value}}</text>
+                            <text class="cuIcon-{{item.icon}} text-red">{{item.name}}</text>
+                        </view>
+                    </view>
+
+                    <view wx:else>
+                        暂无数据
+                    </view>   
+                </view>
+            </view>
+
+            <!-- 数据分析及详细展示模块 -->
+            <view class="analysis mb-10">
+                <!-- 副导航 -->
+                <view class="analysis-nav mb-10">
+                    <scroll-view scroll-x class="bg-white nav text-center">
+                        <view class="cu-item {{index==secondTabCur?'text-green cur':''}}" wx:for="{{date}}" wx:key bindtap="secondTabSelect" data-id="{{index}}" data-name="{{item.zh}}">
+                            {{item.zh}}
+                        </view>
+                    </scroll-view>
+                </view>
+
+                <!-- 详细展示 -->
+                <view class="analysis-list">   
+                    <!-- 一天（24小时）之内的数据  -->   
+                    <view class="day" wx:if="{{navName === '天'}}">
+                        <view class="data-num mb-10"> 
+                            <scroll-view scroll-x class="bg-white nav text-center">
+                                <view class="cu-item text-red text-bold text-xxl">
+                                    {{addItems.day.length}}
+                                </view>
+                            </scroll-view>
+                        </view>
+
+                        <view  wx:if="{{addItems.day.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{addItems.day}}" wx:key>
+                            <view class="cu-item">
+                                <view class="content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    {{item.price}}
+                                    <text class="text-yello"> {{item.num}} </text>
+                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-green"> {{item.time}} </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
+                        <view class="text-sl text-red text-center" wx:if="{{addItems.day.length === 0}}">
+                            暂无日数据
+                        </view> 
+                    </view>
+                    
+                    <!-- 一周（7天）之内的数据  -->
+                    <view class="week" wx:if="{{navName === '周'}}">
+                        <view class="data-num mb-10"> 
+                            <scroll-view scroll-x class="bg-white nav text-center">
+                                <view class="cu-item text-red text-bold text-xxl">
+                                    {{addItems.week.length}}
+                                </view>
+                            </scroll-view>
+                        </view>
+
+                        <view wx:if="{{addItems.week.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{addItems.week}}" wx:key>
+                            <view class="cu-item">
+                                <view class="content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    {{item.price}}
+                                    <text class="text-yello"> {{item.num}} </text>
+                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-green"> {{item.time}} </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
+                        <view class="text-sl text-red text-center" wx:if="{{addItems.week.length === 0}}">
+                            暂无周数据
+                        </view>
+                    </view>
+
+                    <!-- 一月（30天）之内的数据  -->
+                    <view class="month" wx:if="{{navName === '月'}}">
+                        <view class="data-num mb-10"> 
+                            <scroll-view scroll-x class="bg-white nav text-center">
+                                <view class="cu-item text-red text-bold text-xxl">
+                                    {{addItems.month.length}}
+                                </view>
+                            </scroll-view>
+                        </view>
+
+                        <view wx:if="{{addItems.month.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{addItems.month}}" wx:key>
+                            <view class="cu-item">
+                                <view class="content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    {{item.price}}
+                                    <text class="text-yello"> {{item.num}} </text>
+                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-green"> {{item.time}} </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
+                        <view class="text-sl text-red text-center" wx:if="{{addItems.month.length === 0}}">
+                            暂无月数据
+                        </view>
+                    </view>
+
+                    <!-- 半年（182天）之内的数据  -->
+                    <view class="half-year" wx:if="{{navName === '半年'}}">
+                        <view class="data-num mb-10"> 
+                            <scroll-view scroll-x class="bg-white nav text-center">
+                                <view class="cu-item text-red text-bold text-xxl">
+                                    {{addItems.halfYear.length}}
+                                </view>
+                            </scroll-view>
+                        </view>
+
+                        <view wx:if="{{addItems.halfYear.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{addItems.halfYear}}" wx:key>
+                            <view class="cu-item">
+                                <view class="content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    {{item.price}}
+                                    <text class="text-yello"> {{item.num}} </text>
+                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-green"> {{item.time}} </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+
+                        <view class="text-sl text-red text-center" wx:if="{{addItems.halfYear.length === 0}}">
+                            暂无半年数据
+                        </view>
+                    </view>
+
+                    <!-- 一年（365天）之内的数据  -->
+                    <view class="year" wx:if="{{navName === '一年'}}">
+                        <view class="data-num mb-10"> 
+                            <scroll-view scroll-x class="bg-white nav text-center">
+                                <view class="cu-item text-red text-bold text-xxl">
+                                    {{addItems.year.length}}
+                                </view>
+                            </scroll-view>
+                        </view>
+
+                        <view wx:if="{{addItems.year.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{addItems.year}}" wx:key>
+                            <view class="cu-item">
+                                <view class="content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    {{item.price}}
+                                    <text class="text-yello"> {{item.num}} </text>
+                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-green"> {{item.time}} </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>  
+
+                        <view class="text-sl text-red text-center" wx:if="{{addItems.year.length === 0}}">
+                            暂无年数据
+                        </view>
+                    </view>           
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="chart-pillar">
+    
+    </view>
+    
+</view>

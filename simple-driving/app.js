@@ -5,6 +5,7 @@ App({
         logs.unshift(Date.now())
         wx.setStorageSync('logs', logs)
 
+
         wx.login({
             success:(res) => {
                 if (res.code) {
@@ -61,46 +62,51 @@ App({
                         const province = province1.substring(0, province1.length - 1)
                         this.globalData.location = ({
                             city: city.substring(0, city.length - 1),
-                            province: province
+                            province: province,
                         });
+                        this.globalData.hasLocation = true;
                     },
                     complete: () => {
                         // 获取实时油价
-                        // const province = this.globalData.location.province;
-                        // const url = `https://api.jisuapi.com/oil/query?appkey=62ea23ffe7a3a991&province=${province}`;
-                        // wx.request({
-                        //     url: url,
-                        //     method: "get",
-                        //     header: {
-                        //         "Content-Type": "application/json"
-                        //     },
-                        //     success:(res) => {
-                        //         const result = res.data.result;
-                        //         this.globalData.updateTime = res.data.result.updatetime;
-                        //         this.globalData.gasoline = [
-                        //             { name: '89#', value: res.data.result.oil89 },
-                        //             { name: '92#', value: res.data.result.oil92, checked: 'true' },
-                        //             { name: '95#', value: res.data.result.oil95 },
-                        //             { name: '0#', value: res.data.result.oil0 },
-                        //         ];
-                        //     }
-                        // });
+                        const province = this.globalData.location.province;
+                        const url = `https://api.jisuapi.com/oil/query?appkey=62ea23ffe7a3a991&province=${province}`;
+                        wx.request({
+                            url: url,
+                            method: "get",
+                            header: {
+                                "Content-Type": "application/json"
+                            },
+                            success:(res) => {
+                                const result = res.data.result;
+                                this.globalData.updateTime = res.data.result.updatetime;
+                                this.globalData.gasoline = [
+                                    { name: '89#', value: res.data.result.oil89 },
+                                    { name: '92#', value: res.data.result.oil92, checked: 'true' },
+                                    { name: '95#', value: res.data.result.oil95 },
+                                    { name: '0#', value: res.data.result.oil0 },
+                                ];
+                                this.globalData.hasGasoline = true;
+                            }
+                        });
                     }
                 });
             }
         });
     },
     globalData: {
+        hasLocation: false,
+        hasGasoline: false,
+
         isNewUser: false,
         isUser: false,
         location: {},
         userInfo: {},
-        updateTime: '2019-5-6 12:00:00',
+        updateTime: '2019-5-5 12:00:00',
         gasoline: [
-            { name: '89#', value: '7.01', type: '汽油' },
-            { name: '92#', value: '7.20', checked: 'true', type: '汽油' },
-            { name: '95#', value: '7.51', type: '汽油' },
-            { name: '0#', value: '6.80', type: '汽油' }
+            { name: '89#', value: '7.01' },
+            { name: '92#', value: '7.20', checked: 'true' },
+            { name: '95#', value: '7.49' },
+            { name: '0#', value: '6.80' },
         ]
     }
 })

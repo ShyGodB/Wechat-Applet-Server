@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-    <view class="top">
+    <view class="top mt-30">
         <view class="icon-box">
             <icon type="info" size="93"></icon>
         </view>
@@ -31,7 +31,7 @@
         </view>
     </view>
 
-    <view class="weui-footer weui-footer_fixed-bottom">
-        <view class="weui-footer__text">Copyright © 2008-2016 weui.io</view>
+    <view class="footer text-center">
+        <view>Copyright © 2008-2016 weui.io</view>
     </view>
 </view>

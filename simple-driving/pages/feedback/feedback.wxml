@@ -1,0 +1,43 @@
+<view class="container">
+    <view class="header top"></view>
+
+    <view class="question mb-30">
+        <view class="cu-form-group">
+            <view class="title"> 类型 </view> 
+            <view class="action">
+                <button class="cu-btn bg-green shadow" bindtap="showModal" data-target="RadioModal"> Choose </button>
+            </view>
+        </view>
+
+        <view class="cu-form-group">
+            <view class="title">标题</view>
+            <input bindinput='changeTitle' placeholder="请概括你的问题"></input>
+        </view>
+
+        <view class="cu-form-group align-start">
+            <view class="title">内容</view>
+            <textarea bindinput='changeMsg' maxlength="-1" placeholder="主要内容"></textarea>
+        </view>
+    </view>
+
+    <view class="connection mb-30">
+        <view class="cu-form-group">
+            <view class="title"> 手机 </view>
+            <input bindinput='changeMobile' placeholder="手机号"></input>
+        </view>
+
+        <view class="cu-form-group">
+            <view class="title"> 邮箱 </view>
+            <input bindinput='changeEmail' placeholder="邮箱"></input>
+        </view>
+
+        <view class="cu-form-group">
+            <view class="title"> QQ </view>
+            <input bindinput='changeQQ' placeholder="QQ"></input>
+        </view>
+    </view>
+
+    <view class="submit ">
+        <button bindtap='submit' type="primary"> 提交 </button>
+    </view>
+</view>
