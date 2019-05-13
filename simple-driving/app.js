@@ -10,7 +10,7 @@ App({
             success:(res) => {
                 if (res.code) {
                     wx.request({
-                        url: 'https://www.tripspend.com:8888/onLogin',
+                        url: 'https://www.tripspend.com/onLogin',
                         method: "post",
                         data: {
                             code: res.code

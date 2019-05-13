@@ -43,7 +43,7 @@ Page({
         if (Object.keys(app.globalData.userInfo).length !== 0 || app.globalData.isUser === true) {
             // 获取用户出行记录
             wx.request({
-                url: 'https://www.tripspend.com:8888/getUserTripRecord',
+                url: 'https://www.tripspend.com/getUserTripRecord',
                 method: "post",
                 data: {
                     userId: app.globalData.userInfo.id
@@ -81,7 +81,7 @@ Page({
                             listYear.push(res.data[i]);
                         } else if (result <= 7) {
                             listWeek.push(res.data[i]);
-                            istMonth.push(res.data[i]);
+                            listMonth.push(res.data[i]);
                             listHalfYear.push(res.data[i]);
                             listYear.push(res.data[i]);
                         } else if (result <= 30) {
@@ -125,7 +125,7 @@ Page({
 
             // 获取用户加油记录
             wx.request({
-                url: 'https://www.tripspend.com:8888/listGasolineRecord',
+                url: 'https://www.tripspend.com/listGasolineRecord',
                 method: "post",
                 data: {
                     userId: app.globalData.userInfo.id
@@ -161,7 +161,7 @@ Page({
                             listYear.push(res.data[i]);
                         } else if (result <= 7) {
                             listWeek.push(res.data[i]);
-                            istMonth.push(res.data[i]);
+                            listMonth.push(res.data[i]);
                             listHalfYear.push(res.data[i]);
                             listYear.push(res.data[i]);
                         } else if (result <= 30) {
@@ -232,7 +232,7 @@ Page({
                             listYear.push(res.data[i]);
                         } else if (result <= 7 ) {
                             listWeek.push(res.data[i]);
-                            istMonth.push(res.data[i]);
+                            listMonth.push(res.data[i]);
                             listHalfYear.push(res.data[i]);
                             listYear.push(res.data[i]);
                         } else if (result <= 30) {
@@ -307,7 +307,7 @@ Page({
                             listYear.push(res.data[i]);
                         } else if (result <= 7) {
                             listWeek.push(res.data[i]);
-                            istMonth.push(res.data[i]);
+                            listMonth.push(res.data[i]);
                             listHalfYear.push(res.data[i]);
                             listYear.push(res.data[i]);
                         } else if (result <= 30) {

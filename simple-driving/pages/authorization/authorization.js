@@ -24,7 +24,7 @@ Page({
             success: res => {
                 if (res.code) {
                     wx.request({
-                        url: 'https://www.tripspend.com:8888/addUser',
+                        url: 'https://www.tripspend.com/addUser',
                         method: "post",
                         data: {
                             code: res.code,

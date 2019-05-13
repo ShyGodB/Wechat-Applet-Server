@@ -35,11 +35,17 @@ Page({
             url: '/pages/feedback/feedback',
         })
     },
+    prompt() {
+        wx.showModal({
+            title: '提示',
+            content: '此页面尚未设置，敬请期待！',
+        })
+    },
     onLoad() {
         if (Object.keys(app.globalData.userInfo).length !== 0 || app.globalData.isUser === true) {
             // 获取用户出行记录
             wx.request({
-                url: 'https://www.tripspend.com:8888/getUserTripRecord',
+                url: 'https://www.tripspend.com/getUserTripRecord',
                 method: "post",
                 data: {
                     userId: app.globalData.userInfo.id
@@ -73,7 +79,7 @@ Page({
 
             // 获取用户加油记录
             wx.request({
-                url: 'https://www.tripspend.com:8888/listGasolineRecord',
+                url: 'https://www.tripspend.com/listGasolineRecord',
                 method: "post",
                 data: {
                     userId: app.globalData.userInfo.id

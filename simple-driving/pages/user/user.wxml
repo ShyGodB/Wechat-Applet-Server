@@ -48,7 +48,7 @@
                     </view>
                 </view>
                 <view class="cu-item arrow">
-                    <view class="content">
+                    <view class="content" bindtap='prompt'>
                         <text class="cuIcon-circlefill text-grey"></text>
                         <text class="text-grey"> 关于我们 </text>
                     </view>

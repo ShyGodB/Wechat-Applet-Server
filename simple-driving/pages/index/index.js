@@ -10,7 +10,6 @@ Page({
         isUser: false,
 
         // 系统默认数据
-        car: "Car",
 
         price: "",
         amount: "",
@@ -18,7 +17,6 @@ Page({
         cost: "",
 
         index: '',
-        cars:['hat'],
         updateTime: '',
         isDefaultPrice: false,
         isDefaultAmount: false
@@ -54,7 +52,7 @@ Page({
         if(this.data.isUser === true && ev.detail.value !== undefined) {
             const data = [app.globalData.userInfo.id, 'amount', ev.detail.value];
             wx.request({
-                url: 'https://www.tripspend.com:8888/updateUser',
+                url: 'https://www.tripspend.com/user/updateUser',
                 method: "post",
                 data: data,
                 header: {
@@ -161,18 +159,16 @@ Page({
                     updateTime: app.globalData.updateTime,
                     gasoline: app.globalData.gasoline,
                     location: app.globalData.location,
-                })
+                });
+                if (Object.keys(app.globalData.userInfo).length !== 0 && app.globalData.isUser === true) {
+                    that.setData({
+                        isDefaultAmount: true,
+                        amount: app.globalData.userInfo.amount,
+                        userInfo: app.globalData.userInfo
+                    })
+                }
             }
         }, 500);        
-    },
-    onShow() {
-        if (Object.keys(app.globalData.userInfo).length !== 0 && app.globalData.isUser === true) {
-            this.setData({
-                isDefaultAmount: true,
-                amount: app.globalData.userInfo.amount,
-                userInfo: app.globalData.userInfo
-            })
-        }
     },
     onPullDownRefresh: function () {
         this.onLoad();

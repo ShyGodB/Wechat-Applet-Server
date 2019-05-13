@@ -2,14 +2,14 @@
     <view class="topBox mb-20 w-100 flex">
         <view class="top-left top w-100">
            <picker mode="selector" bindchange="changeCar" value="{{cars}}" range="{{cars}}">
-                <view class="picker car text-green font-size-40">
-                    {{cars.length !== 0? cars[0] : '添加' }}
+                <view class="picker car text-black font-size-40">
+                    {{isUser === true ? userInfo.nickname : 'admin' }}
                 </view>
             </picker>
         </view>
 
         <view class="top-right top w-100">
-            <view class="picker place text-danger text-right font-size-40">
+            <view class="picker place text-black text-right font-size-40">
                 {{location.city}}
             </view>
         </view>

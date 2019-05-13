@@ -60,7 +60,7 @@ Page({
         const data = [obj]
         if(this.data.isUser === true) {
             wx.request({
-                url: "https://www.tripspend.com:8888/addGasolineRecord",
+                url: "https://www.tripspend.com/addGasolineRecord",
                 method: "post",
                 data: {
                     userId: app.globalData.userInfo.id,

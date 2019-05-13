@@ -1,6 +1,5 @@
 {
     "pages": [
-        "pages/feedback/feedback",
         "pages/index/index",
         "pages/logs/logs",
         "pages/add/add",
@@ -8,7 +7,8 @@
         "pages/authorization/authorization",
         "pages/data/data",
         "pages/info/info",
-        "pages/modal/modal" 
+        "pages/modal/modal",
+        "pages/feedback/feedback"
     ],
     "window": {
         "backgroundTextStyle": "light",

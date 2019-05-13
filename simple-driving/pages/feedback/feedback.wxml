@@ -1,43 +1,53 @@
 <view class="container">
-    <view class="header top"></view>
+    <view class="header top text-center"></view>
 
     <view class="question mb-30">
-        <view class="cu-form-group">
+        <view class="cu-form-group" style="margin-bottom: {{show === true ? 360 : 0}}rpx">
             <view class="title"> 类型 </view> 
-            <view class="action">
-                <button class="cu-btn bg-green shadow" bindtap="showModal" data-target="RadioModal"> Choose </button>
+            <view class='select_box'>
+                <view class='select' catchtap='selectTap'>
+                    <text class='select_text'>{{selected}}</text>
+                    <text class="cuIcon-triangledownfill"></text>        
+                </view>
+                <view class='option_box' style='height:{{show ? 360 : 0}}rpx;'>
+                    <view class='option' wx:for='{{selectData}}' wx:key bindtap='optionTap' data-name="{{item}}">{{item}}</view>
+                </view>
             </view>
         </view>
 
         <view class="cu-form-group">
             <view class="title">标题</view>
-            <input bindinput='changeTitle' placeholder="请概括你的问题"></input>
+            <input bindinput='changeTitle' placeholder="" value="{{title}}"></input>
         </view>
 
         <view class="cu-form-group align-start">
             <view class="title">内容</view>
-            <textarea bindinput='changeMsg' maxlength="-1" placeholder="主要内容"></textarea>
+            <textarea bindinput='changeMsg' maxlength="-1" value="{{msg}}" placeholder="请简短描述您的建议或所遇到的问题"></textarea>
         </view>
     </view>
 
     <view class="connection mb-30">
         <view class="cu-form-group">
-            <view class="title"> 手机 </view>
-            <input bindinput='changeMobile' placeholder="手机号"></input>
+            <view class="title"> QQ </view>
+            <input bindinput='changeQQ' placeholder="选填" value="{{qq}}"></input>
         </view>
 
         <view class="cu-form-group">
             <view class="title"> 邮箱 </view>
-            <input bindinput='changeEmail' placeholder="邮箱"></input>
+            <input bindinput='changeEmail' placeholder="选填" value="{{email}}"></input>
         </view>
 
         <view class="cu-form-group">
-            <view class="title"> QQ </view>
-            <input bindinput='changeQQ' placeholder="QQ"></input>
+            <view class="title"> 手机 </view>
+            <input bindinput='changeMobile' placeholder="请填写11位手机号码" value="{{mobile}}"></input>
         </view>
     </view>
 
     <view class="submit ">
         <button bindtap='submit' type="primary"> 提交 </button>
+    </view>
+
+    <view class="toindex">
+        <button class="text-grey" bindtap='goIndex'> 回到主页 </button>
     </view>
 </view>
