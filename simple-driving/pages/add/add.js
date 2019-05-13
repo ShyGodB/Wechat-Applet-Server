@@ -4,6 +4,7 @@ Page({
     data: {
         updateTime: '',
         gasoline: [],
+        location: {},
         isUser: false,
         isNewUser: true,
         
@@ -46,10 +47,15 @@ Page({
         this.setData({
             cost: cost
         });
+        const date = new Date();
+        const time = date.toLocaleString();
+        const ms = Date.parse(new Date());
         const obj = {
             price: price,
             num: num,
-            cost: cost
+            cost: cost,
+            time: time,
+            ms: ms
         }
         const data = [obj]
         if(this.data.isUser === true) {
@@ -60,40 +66,61 @@ Page({
                     userId: app.globalData.userInfo.id,
                     price: price,
                     num: num,
-                    cost: cost
+                    cost: cost,
+                    time: time,
+                    ms: ms
                 },
                 header: {
                     "Content-Type": "application/json"
                 },
-                success: (res) => {
-                    // console.log(res.data);
-                },
-                fail: (err) => {
-                    console.log(err);
-                },
-                complete: () => {
-                    console.log("完成");
-                }
             });
         } else {
-            wx.setStorage({
+            wx.getStorage({
                 key: 'add',
-                data: data,
+                success: (res) => {
+                    const newData = res.data;
+                    if (obj.num !== 0) {
+                        newData.push(obj);
+                        wx.setStorage({
+                            key: 'add',
+                            data: newData
+                        })
+                    }
+                },
+                fail: () => {
+                    if (obj.num !== 0) {
+                        wx.setStorage({
+                            key: 'add',
+                            data: data
+                        })
+                    }
+                }
             })
         }
-        
     },
     onLoad() {
-        this.setData({
-            isUser: app.globalData.isUser,
-            isNewUser: app.globalData.isNewUser,
+        const that = this;
+        const timer = setInterval(function testNetwork() {
+            if (app.globalData.hasLocation === false || app.globalData.hasGasoline === false) {
+                wx.showLoading({
+                    title: '等待网络请求'
+                });
+            } else {
+                wx.hideLoading();
+                clearInterval(timer);
+                that.setData({
+                    isUser: app.globalData.isUser,
+                    isNewUser: app.globalData.isNewUser,
 
-            gasoline: app.globalData.gasoline,
-            updateTime: app.globalData.updateTime,
-            
-            isDefaultPrice: true,
-            price: app.globalData.gasoline[1].value
-        })
+                    isDefaultPrice: true,
+                    price: app.globalData.gasoline[1].value,
+
+                    updateTime: app.globalData.updateTime,
+                    gasoline: app.globalData.gasoline,
+                    location: app.globalData.location,
+                })
+            }
+        }, 500);
     },
     onShow() {
         // 存在用户  用户已经登录
@@ -102,12 +129,9 @@ Page({
                 userInfo: app.globalData.userInfo
             })
         }
-        wx.getStorage({
-            key: 'add',
-            success: function(res) {
-                console.log(res.data)
-            },
-        })
+    },
+    onPullDownRefresh: function () {
+        this.onLoad();
     }
    
 

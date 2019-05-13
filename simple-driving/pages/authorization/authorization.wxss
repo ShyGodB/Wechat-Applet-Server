@@ -48,3 +48,9 @@
 .weui-btn {
     width: 60%;
 }
+
+.footer {
+    position: absolute;
+    left: 25%;
+    bottom: 20rpx;
+}

@@ -1,4 +1,5 @@
-const app = getApp()
+const app = getApp();
+
 Page({
     data: {
         // 页面加载时的预设数据
@@ -79,12 +80,16 @@ Page({
         this.setData({
             cost: cost.toFixed(2)
         });
-        const key = 'key';
+        const date = new Date();
+        const time = date.toLocaleString();
+        const ms = Date.parse(new Date());
         const obj = {
             price: price,
             amount: amount,
             trip: trip,
-            cost: cost.toFixed(2)
+            cost: cost.toFixed(2),
+            time: time,
+            ms: ms
         }
         const data = [obj]
         if (this.data.isUser === true) {
@@ -96,48 +101,71 @@ Page({
                     price: price,
                     amount: amount,
                     trip: trip,
-                    cost: cost
+                    cost: cost.toFixed(2),
+                    time: time,
+                    ms: ms
                 },
                 header: {
                     "Content-Type": "application/json"
                 },
                 success: (res) => {
                     this.setData({
-                        cost: cost.toFixed(2)
+                        cost: cost
                     })
                 }
             });
         } else {
-            wx.setStorage({
+            wx.getStorage({
                 key: 'trip',
-                data: data,
-            }) 
+                success: (res) => {
+                    const newData = res.data;
+                    if(obj.amount !== 0 && obj.trip !== 0) {
+                        newData.push(obj);
+                        wx.setStorage({
+                            key: 'trip',
+                            data: newData
+                        })
+                    }
+                },
+                fail: (res) => {
+                    if (obj.amount !== 0 && obj.trip !== 0) {
+                        wx.setStorage({
+                            key: 'trip',
+                            data: data
+                        })
+                    }
+                }
+            })
         }
         
     },
 
     // 监听页面加载，可做一些事情
     onLoad() {
-        this.setData({
-            isUser: app.globalData.isUser,
-            isNewUser: app.globalData.isNewUser,
+        const that = this;
+        const timer = setInterval(function testNetwork() {
+            if (app.globalData.hasLocation === false || app.globalData.hasGasoline === false) {
+                wx.showLoading({
+                    title: '等待网络请求'
+                });
+            } else {
+                wx.hideLoading();
+                clearInterval(timer);
+                that.setData({
+                    isUser: app.globalData.isUser,
+                    isNewUser: app.globalData.isNewUser,
 
-            isDefaultPrice: true,
-            price: app.globalData.gasoline[1].value,
+                    isDefaultPrice: true,
+                    price: app.globalData.gasoline[1].value,
 
-            updateTime: app.globalData.updateTime,
-            gasoline: app.globalData.gasoline,
-            location: app.globalData.location,
-        })
-        wx.getStorage({
-            key: 'trip',
-            success: function(res) {
-                console.log(res.data)
-            },
-        })
+                    updateTime: app.globalData.updateTime,
+                    gasoline: app.globalData.gasoline,
+                    location: app.globalData.location,
+                })
+            }
+        }, 500);        
     },
     onShow() {
-        // 存在用户  用户已经登录
         if (Object.keys(app.globalData.userInfo).length !== 0 && app.globalData.isUser === true) {
             this.setData({
                 isDefaultAmount: true,
@@ -145,5 +173,8 @@ Page({
                 userInfo: app.globalData.userInfo
             })
         }
+    },
+    onPullDownRefresh: function () {
+        this.onLoad();
     }
 });
