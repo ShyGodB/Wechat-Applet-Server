@@ -36,6 +36,41 @@ const object = {
     async updatePrice(data) {
         const sql = "update user set price=? where id = ?";
         await promisePool.query(sql, data);
+    },
+
+    async updateNickname(data) {
+        const sql = "update user set nickname=? where id = ?";
+        await promisePool.query(sql, data);
+    },
+
+    async updateGender(data) {
+        const sql = "update user set gender=? where id = ?";
+        await promisePool.query(sql, data);
+    },
+
+    async updateGasoline(data) {
+        const sql = "update user set gasoline=? where id = ?";
+        await promisePool.query(sql, data);
+    },
+
+    async updateMobile(data) {
+        const sql = "update user set mobile=? where id = ?";
+        await promisePool.query(sql, data);
+    },
+
+    async updateCountry(data) {
+        const sql = "update user set country=? where id = ?";
+        await promisePool.query(sql, data);
+    },
+
+    async updateBirthday(data) {
+        const sql = "update user set birthday=? where id = ?";
+        await promisePool.query(sql, data);
+    },
+
+    async addFeedback(data) {
+	const sql = "insert into feedback(user_id, user_name, type, title, msg, mobile, email, qq) values(?, ?, ?, ?, ?, ?, ?, ?)";
+	await promisePool.query(sql, data);
     }
 
 };

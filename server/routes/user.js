@@ -73,8 +73,38 @@ router.post('/updateUser', async (ctx) => {
             await updateAmountPromise;
             ctx.body = {msg: '成功'};
             break;
+	case '价格':
+            const price = data[2];
+            const data1 =  [price, id];
+            const updatePricePromise = user.updatePrice(data1);
+            await updatePricePromise;
+            ctx.body = {msg: '成功'};
+            break;
+	case '油耗':
+            const amount = data[2];
+            const data2 =  [amount, id];
+            const updateAmountPromise = user.updateAmount(data2);
+            await updateAmountPromise;
+            ctx.body = {msg: '成功'};
+            break;
+	case '昵称':
+            const nickname = data[2];
+            const data2 =  [nickname, id];
+            const updateAmountPromise = user.updateAmount(data2);
+            await updateAmountPromise;
+            ctx.body = {msg: '成功'};
+            break;        
     }
 });
+
+// 添加用户反馈
+router.post('/user/feedback', async (ctx) => {
+    const data = ctx.request.body;
+    // console.log(data);
+    await user.addFeedback(data);
+    ctx.body = {msg: '成功'};
+});
+
 
 
 module.exports = router;
