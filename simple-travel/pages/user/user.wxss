@@ -27,3 +27,11 @@ page {
     border: 2rpx solid #FFFFFF;
     border-radius: 20rpx;
 }
+
+
+.no-data {
+    width: 100%;
+    padding: 20rpx;
+    color: #e54d42;
+    font-size: 40rpx;
+}

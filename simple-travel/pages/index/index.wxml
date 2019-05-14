@@ -35,12 +35,12 @@
 
             <view class="cu-form-group">
                 <view class="title">单价</view>
-                <input class="" bindinput='changePrice' id="{{index}}" value="{{isDefaultPrice === true? price : gasoline[index].value}}" type="digit" placeholder="汽油价格"></input>
+                <input class="" bindinput='changePrice' id="{{index}}" value="{{(isDefaultPrice === false || price.length === 0)? gasoline[index].value :  price}}" type="digit" placeholder="汽油价格"></input>
                 <text class="font-size-32 text-secondary float-right"> （元/升） </text>
             </view>
             <view class="cu-form-group">
                 <view class="title">油耗</view>
-                <input bindinput='changeAmount' value="{{isDefaultAmount === true ? amount : ''}}" type="digit" placeholder="汽车油耗参数"></input>
+                <input bindinput='changeAmount' value="{{(isDefaultAmount === false || amount.lenght === 0)? '' : amount}}" type="digit" placeholder="汽车油耗参数"></input>
                 <text class="font-size-32 text-secondary float-right"> （百公里/升） </text>
             </view>
             <view class="cu-form-group mb-20">

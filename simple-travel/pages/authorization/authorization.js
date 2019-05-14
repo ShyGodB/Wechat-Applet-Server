@@ -12,9 +12,6 @@ Page({
             url: '/pages/index/index',
         })
     },
-    onLoad() {
-        
-    },
     getUserInfo(ev) {
         const userInfo = ev.detail.userInfo;
         this.setData({
@@ -37,12 +34,11 @@ Page({
                             const secretSessionKey = res.data.session_key;
                             const userInfo = res.data.userData[0];
                             app.globalData.userInfo = userInfo;
+                            app.globalData.isUser = true;
+                            app.globalData.isNewUser = false;
                             this.setData({
                                 userInfo: userInfo
                             });
-                        },
-                        fail: (err) => {
-                            console.log('新增用户失败' + err);
                         },
                         complete: () => {
                             wx.switchTab({
@@ -50,8 +46,6 @@ Page({
                             })
                         }
                     })
-                } else {
-                    console.log('登录失败！' + res.errMsg)
                 }
             }
         })

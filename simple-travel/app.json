@@ -7,7 +7,6 @@
         "pages/authorization/authorization",
         "pages/data/data",
         "pages/info/info",
-        "pages/modal/modal",
         "pages/feedback/feedback"
     ],
     "window": {

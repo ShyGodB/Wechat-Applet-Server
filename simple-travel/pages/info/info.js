@@ -188,6 +188,9 @@ Page({
             }  
         } 
     },
+    onShow() {
+        this.onLoad();
+    },
     onPullDownRefresh: function () {
         this.onLoad();
     }
