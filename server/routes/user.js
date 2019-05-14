@@ -54,38 +54,38 @@ router.post("/getUser", async (ctx) => {
 });
 
 // 更新用户部分信息
-router.post('/updateUser', async (ctx) => {
+router.post('/user/updateUser', async (ctx) => {
     const data = ctx.request.body;
     const id = data[0];
     const name = data[1];
-    console.log(id, name);
+    console.log(data);
     switch(name) {
     	case 'price':
     	    const price1 = data[2];
     	    const data1 = [price1, id];
-    	    const updatePricePromise = user.updatePrice(data1);
-    	    await updatePricePromise;
+    	    const updatePricePromise1 = user.updatePrice(data1);
+    	    await updatePricePromise1;
     	    ctx.body = {msg: '成功'};
     	    break;
         case '价格':
             const price2 = data[2];
             const data2 = [price2, id];
-            const updatePricePromise = user.updatePrice(data2);
-            await updatePricePromise;
+            const updatePricePromise2 = user.updatePrice(data2);
+            await updatePricePromise2;
             ctx.body = {msg: '成功'};
             break;
     	case 'amount':
     	    const amount1 = data[2];
             const data3 = [amount1, id];
-            const updateAmountPromise = user.updateAmount(data3);
-            await updateAmountPromise;
+            const updateAmountPromise1 = user.updateAmount(data3);
+            await updateAmountPromise1;
             ctx.body = {msg: '成功'};
             break;
     	case '油耗':
             const amount2 = data[2];
             const data4 = [amount2, id];
-            const updateAmountPromise = user.updateAmount(data4);
-            await updateAmountPromise;
+            const updateAmountPromise2 = user.updateAmount(data4);
+            await updateAmountPromise2;
             ctx.body = {msg: '成功'};
             break;
         case '油型':
@@ -133,7 +133,7 @@ router.post('/updateUser', async (ctx) => {
         case '地址':
             const address = data[2];
             const data11 = [address, id];
-            const updateAddressPromise = user.updateAddress(data1);
+            const updateAddressPromise = user.updateAddress(data11);
             await updateAddressPromise;
             ctx.body = {msg: '成功'};
             break;
