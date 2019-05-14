@@ -16,9 +16,18 @@ Page({
         gridCol: 3,
     },
     goToWarrant() {
-        wx.navigateTo({
-            url: '../authorization/authorization',
-        })
+        if(app.globalData.isUser !== true) {
+            wx.navigateTo({
+                url: '../authorization/authorization',
+            })
+        } else {
+            wx.showModal({
+                title: '提示',
+                content: '您已授权',
+                showCancel: false
+            })
+        }
+        
     },
     goToData() {
         wx.navigateTo({
@@ -26,19 +35,35 @@ Page({
         })
     },
     goToInfo() {
-        wx.navigateTo({
-            url: '/pages/info/info',
-        })
+        if (app.globalData.isUser === true) {
+            wx.navigateTo({
+                url: '/pages/info/info',
+            })
+        } else {
+            wx.showModal({
+                title: '提示',
+                content: '您还没有登录',
+                confirmText: '去授权',
+                success: (res) => {
+                    if (res.confirm) {
+                        wx.navigateTo({
+                            url: '/pages/authorization/authorization',
+                        })
+                    }
+                }
+            })
+        }
     },
     goToFeedback() {
         wx.navigateTo({
             url: '/pages/feedback/feedback',
         })
     },
-    prompt() {
+    showAuthor() {
         wx.showModal({
-            title: '提示',
-            content: '此页面尚未设置，敬请期待！',
+            title: '作者相关',
+            content: '手机号：18682210201',
+            showCancel: false
         })
     },
     onLoad() {

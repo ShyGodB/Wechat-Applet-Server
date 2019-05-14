@@ -1,74 +1,81 @@
 <view class="container">
-    <view class="top header w-100" style="background-image: url(/public/images/yk1.png)">
+    <view class="top header w-100" style="background-image:url(/public/images/yk.png)">
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <text class="userinfo-nickname text-white">{{userInfo.nickname}}</text>
     </view>
 
+    <view class="main-title w-100 mb-30">
+        <text class="float-left"> 基本信息 </text>
+            <button bindtap='changeBeEdit' class="float-right cu-btn bg-blue animation-scale-up margin-sm basis-sm shadow">
+                <text class="mr-6"> 编辑 </text>
+                <image src="/public/images/pen.png" bindtap='changeBeEdit' style="width:32rpx;height:32rpx;"></image>
+            </button>
+    </view>
 
     <view class="main p-20">
         <view class="cu-form-group">
             <view class="title">昵称</view>
-            <input bindinput='changeInfo' data-name="昵称" placeholder="{{userInfo.nickname}}" disabled='{{beEdit}}'></input>
-            <image src="/public/images/pen.png" bindtap='changeBeEdit' style="width:36rpx;height:36rpx;"></image>
+            <input bindinput='changeInfo' data-name="昵称" placeholder="{{nickname}}" disabled='{{beEdit}}'></input>
         </view>
         <view class="cu-form-group">
             <view class="title">性别</view>
-            <input bindinput='changeInfo' data-name="性别" placeholder="{{userInfo.gender}}" disabled='{{beEdit}}'></input>
-            <image src="/public/images/pen.png" bindtap='changeBeEdit' style="width:36rpx;height:36rpx;"></image>
+            <input bindinput='changeInfo' data-name="性别" placeholder="{{gender}}" disabled='true'></input>
+            <radio-group wx:if="{{!beEdit}}" class="radio-group" bindchange="radioChange">
+                <label class="radio" wx:for="{{items}}" wx:key>
+                    <radio value="{{item.name}}" checked="{{item.checked}}" />
+                    {{item.name}}
+                </label>
+            </radio-group>
         </view>
-        <view class="cu-form-group">
+        <view class="cu-form-group" bindtap='prompt'>
             <view class="title">国籍</view>
-            <input bindinput='changeInfo' placeholder="{{userInfo.country}}" disabled='true'></input>
+            <input placeholder="{{country}}" disabled='true'></input>
         </view>
         <view class="cu-form-group">
             <view class="title">油耗</view>
-            <input bindinput='changeInfo' data-name="油耗" placeholder="{{userInfo.amount}}" disabled='{{beEdit}}'></input>
-            <image src="/public/images/pen.png" bindtap='changeBeEdit' style="width:36rpx;height:36rpx;"></image>
+            <input bindinput='changeInfo' data-name="油耗" placeholder="{{amount}}" disabled='{{beEdit}}'></input>
         </view>
         <view class="cu-form-group">
             <view class="title">油型</view>
-            <input bindinput='changeInfo' data-name="油型" placeholder="{{userInfo.gasoline}}" disabled='{{beEdit}}'></input>
-            <image src="/public/images/pen.png" bindtap='changeBeEdit' style="width:36rpx;height:36rpx;"></image>
+            <input bindinput='changeInfo' data-name="油型" placeholder="{{gasoline}}" disabled='{{beEdit}}'></input>
         </view>
         <view class="cu-form-group">
             <view class="title">价格</view>
-            <input bindinput='changeInfo' data-name="价格" placeholder="{{userInfo.price}}" disabled='{{beEdit}}'></input>
-            <image src="/public/images/pen.png" bindtap='changeBeEdit' style="width:36rpx;height:36rpx;"></image>
+            <input bindinput='changeInfo' data-name="价格" placeholder="{{price}}" disabled='{{beEdit}}'></input>
         </view>
 
         <view class="cu-form-group">
             <view class="title">手机</view>
-            <input bindinput='changeInfo' data-name="手机" placeholder="输入框带标签" disabled='{{beEdit}}'></input>
+            <input bindinput='changeInfo' data-name="手机" placeholder="{{mobile}}" disabled='{{beEdit}}'></input>
             <view class="cu-capsule radius mr-6">
                 <view class="cu-tag bg-blue">
                     +86
                 </view>
                 <view class="cu-tag line-blue">
-                    中国大陆
+                    {{mobile.length === 11 ? 'OK':'NO'}}
                 </view>
             </view>
-            <image src="/public/images/pen.png" bindtap='changeBeEdit' style="width:36rpx;height:36rpx;"></image>
         </view>
 
         <view class="cu-form-group">
             <view class="title">生日</view>
-            <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="dateChange">
+            <picker mode="date" value="{{birthday}}" start="1920-02-01" end="2019-09-01" bindchange="changeTime">
                 <view class="picker">
-                    {{date}}
+                    {{birthday.length === 0 ? '2018-12-9' : birthday}}
                 </view>
             </picker>
         </view>
 
         <view class="cu-form-group">
-            <view class="title">地址选择</view>
-            <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="title">地址</view>
+            <picker mode="region" bindchange="changeAddress" value="{{address}}">
                 <view class="picker">
-                    {{region[0]}}，{{region[1]}}，{{region[2]}}
+                    {{address.length === 0 ? '广东省，深圳市，宝安区' : address}}
                 </view>
             </picker>
         </view>      
     </view>
-
+    
     <view class="end footer w-100">
         <view class="main-content cu-list menu ">
             <view class="cu-item arrow">

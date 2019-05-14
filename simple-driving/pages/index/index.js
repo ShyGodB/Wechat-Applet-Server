@@ -92,7 +92,7 @@ Page({
         const data = [obj]
         if (this.data.isUser === true) {
             wx.request({
-                url: "https://www.tripspend.com:8888/addTripRecord",
+                url: "https://www.tripspend.com/addTripRecord",
                 method: "post",
                 data: {
                     userId: app.globalData.userInfo.id,
@@ -105,11 +105,6 @@ Page({
                 },
                 header: {
                     "Content-Type": "application/json"
-                },
-                success: (res) => {
-                    this.setData({
-                        cost: cost
-                    })
                 }
             });
         } else {

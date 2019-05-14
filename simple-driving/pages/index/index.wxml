@@ -1,11 +1,9 @@
-<view class="container flex m-20 p-10">
+<view class="container flex p-20">
     <view class="topBox mb-20 w-100 flex">
         <view class="top-left top w-100">
-           <picker mode="selector" bindchange="changeCar" value="{{cars}}" range="{{cars}}">
-                <view class="picker car text-black font-size-40">
-                    {{isUser === true ? userInfo.nickname : 'admin' }}
-                </view>
-            </picker>
+            <view class="text-black font-size-40">
+                {{isUser === true ? userInfo.nickname : 'admin' }}
+            </view>
         </view>
 
         <view class="top-right top w-100">

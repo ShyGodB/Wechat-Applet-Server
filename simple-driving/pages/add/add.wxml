@@ -1,4 +1,4 @@
-<view class="container flex m-20 p-10">
+<view class="container flex p-20">
     <view class="mainBox w-100 flex mb-30">
         <view class="content w-100">
             <view class="updateTime mb-20 p-20 font-size-40">  
