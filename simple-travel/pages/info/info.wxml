@@ -1,5 +1,5 @@
 <view class="container">
-    <view class="top header w-100" style="background-image:url(/public/images/yk.png)">
+    <view class="top w-100" style="">
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <text class="userinfo-nickname text-white">{{userInfo.nickname}}</text>
     </view>

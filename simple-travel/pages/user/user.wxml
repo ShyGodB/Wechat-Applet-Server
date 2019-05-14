@@ -1,6 +1,6 @@
 <view class="container">
 
-    <view class="top w-100" style="background-image: url(/public/images/yk.png)">
+    <view class="top w-100" style="">
         <image bindtap="goToWarrant" class="userinfo-avatar" src="{{isUser === true ? userInfo.avatarUrl : defaultUrl}}" mode="cover"></image>
         <text bindtap="goToWarrant" class="userinfo-nickname text-white text-lg">{{isUser === true ? userInfo.nickname : '授权登录'}}</text>
     </view>

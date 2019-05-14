@@ -1,13 +1,13 @@
 <view class="container flex p-20">
     <view class="topBox mb-20 w-100 flex">
         <view class="top-left top w-100">
-            <view class="text-black font-size-40">
+            <view class="text-orange font-size-40">
                 {{isUser === true ? userInfo.nickname : 'admin' }}
             </view>
         </view>
 
         <view class="top-right top w-100">
-            <view class="picker place text-black text-right font-size-40">
+            <view class="picker place text-mauve text-right font-size-40">
                 {{location.city}}
             </view>
         </view>

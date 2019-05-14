@@ -8,7 +8,8 @@ page {
 
 .top {
     height: 300rpx;
-    background-color: #000000;
+    background-image: var(--gradualGreen);
+	color: var(--white);
     display: flex;
     flex-direction: column;
     align-items: center;
