@@ -69,23 +69,27 @@ App({
                     complete: () => {
                         // 获取实时油价
                         const province = this.globalData.location.province;
-                        const url = `https://api.jisuapi.com/oil/query?appkey=62ea23ffe7a3a991&province=${province}`;
-                        wx.request({
+                        const url = `https://ali-todayoil.showapi.com/todayoil?prov=${province}`
+                        wx.request({ 
                             url: url,
                             method: "get",
                             header: {
-                                "Content-Type": "application/json"
+                                "Content-Type": "application/json",
+                                "Authorization": 'APPCODE f8f25f5a72bb4f4db2627e6978c5f725'
                             },
                             success:(res) => {
-                                const result = res.data.result;
-                                this.globalData.updateTime = res.data.result.updatetime;
-                                this.globalData.gasoline = [
-                                    { name: '89#', value: res.data.result.oil89 },
-                                    { name: '92#', value: res.data.result.oil92, checked: 'true' },
-                                    { name: '95#', value: res.data.result.oil95 },
-                                    { name: '0#', value: res.data.result.oil0 },
-                                ];
-                                this.globalData.hasGasoline = true;
+                                if(res.data.showapi_res_code === 0) {
+                                    const result = res.data.showapi_res_body.list[0];
+                                    this.globalData.updateTime = result.ct;
+                                    this.globalData.gasoline = [
+                                        { name: '89#', value: result.p89 },
+                                        { name: '92#', value: result.p92, checked: 'true' },
+                                        { name: '95#', value: result.p95 },
+                                        { name: '98#', value: result.p98 },
+                                        { name: '0#', value: result.p0 },
+                                    ];
+                                    this.globalData.hasGasoline = true;
+                                }
                             }
                         });
                     }
@@ -102,11 +106,6 @@ App({
         location: {},
         userInfo: {},
         updateTime: '2019-5-5 12:00:00',
-        gasoline: [
-            { name: '89#', value: '7.01' },
-            { name: '92#', value: '7.20', checked: 'true' },
-            { name: '95#', value: '7.49' },
-            { name: '0#', value: '6.80' },
-        ]
+        gasoline: []
     }
 })

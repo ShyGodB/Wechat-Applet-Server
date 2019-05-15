@@ -75,38 +75,28 @@ Page({
                         const result = Math.floor(msDiff / 86400000);
                         if (result <= 1) {
                             listDay.push(res.data[i]);
-                            listWeek.push(res.data[i]);
-                            listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 7) {
                             listWeek.push(res.data[i]);
-                            listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 30) {
                             listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 182) {
                             listHalfYear.push(res.data[i]);
                         } else if (result <= 365) {
                             listYear.push(res.data[i]);
-                            istYear.push(res.data[i]);
                         } else {
                             listOverYear.push(res.data[i]);
                         }
                     }
                     const listAll = [
-                        { name: '总花费', value: sumCost.toFixed(2), color: 'orange', icon: 'redpacket' },
+                        { name: '总花费', value: sumCost.toFixed(2), color: 'red' },
                         { name: '出行次数', value: tripNum, color: 'orange' },
-                        { name: '总油耗', value: sumGaso.toFixed(2), color: 'orange' },
-                        { name: '总路程', value: sumTrip.toFixed(2), color: 'orange' },
+                        { name: '总油耗', value: sumGaso.toFixed(2), color: 'yellow' },
+                        { name: '总路程', value: sumTrip.toFixed(2), color: 'pink' },
                     ];
                     const listEqual = [
-                        { name: '平均花费', value: (sumCost / tripNum).toFixed(2), color: 'orange' },
-                        { name: '平均油耗', value: (sumGaso / tripNum).toFixed(2), color: 'orange' },
-                        { name: '平均路程', value: (sumTrip / tripNum).toFixed(2), color: 'orange' }
+                        { name: '平均花费', value: (sumCost / tripNum).toFixed(2), color: 'cyan' },
+                        { name: '平均油耗', value: (sumGaso / tripNum).toFixed(2), color: 'blue' },
+                        { name: '平均路程', value: (sumTrip / tripNum).toFixed(2), color: 'mauve' }
                     ];
                     this.setData({
                         tripItems: {
@@ -155,36 +145,26 @@ Page({
                         const result = Math.floor(msDiff / 86400000);
                         if (result <= 1) {
                             listDay.push(res.data[i]);
-                            listWeek.push(res.data[i]);
-                            listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 7) {
                             listWeek.push(res.data[i]);
-                            listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 30) {
                             listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 182) {
                             listHalfYear.push(res.data[i]);
                         } else if (result <= 365) {
                             listYear.push(res.data[i]);
-                            istYear.push(res.data[i]);
                         } else {
                             listOverYear.push(res.data[i]);
                         }
                     }
                     const listAll = [
-                        { name: '总花费', value: addCost.toFixed(2), color: 'orange', icon: 'redpacket' },
+                        { name: '总花费', value: addCost.toFixed(2), color: 'red' },
                         { name: '加油次数', value: addNum, color: 'orange' },
-                        { name: '总加油量', value: addGaso.toFixed(2), color: 'orange' }
+                        { name: '总加油量', value: addGaso.toFixed(2), color: 'pink' }
                     ];
                     const listEqual = [
-                        { name: '平均花费', value: (addCost / addNum).toFixed(2), color: 'orange' },
-                        { name: '平均加油量', value: (addGaso / addNum).toFixed(2), color: 'orange' }
+                        { name: '平均花费', value: (addCost / addNum).toFixed(2), color: 'cyan' },
+                        { name: '平均加油量', value: (addGaso / addNum).toFixed(2), color: 'blue' }
                     ];
                     this.setData({
                         addItems: {
@@ -226,38 +206,28 @@ Page({
                         const result = Math.floor(msDiff/86400000);
                         if(result <= 1) {
                             listDay.push(res.data[i]);
-                            listWeek.push(res.data[i]);
-                            listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 7 ) {
                             listWeek.push(res.data[i]);
-                            listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 30) {
                             listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 182) {
                             listHalfYear.push(res.data[i]);
                         } else if (result <= 365) {
                             listYear.push(res.data[i]);
-                            istYear.push(res.data[i]);
                         } else {
                             listOverYear.push(res.data[i]);
                         }
                     }
                     const listAll = [
-                        { name: '总花费', value: sumCost.toFixed(2), color: 'orange', icon: 'redpacket' },
+                        { name: '总花费', value: sumCost.toFixed(2), color: 'red' },
                         { name: '出行次数', value: tripNum, color: 'orange' },
-                        { name: '总油耗', value: sumGaso.toFixed(2), color: 'orange' },
-                        { name: '总路程', value: sumTrip.toFixed(2), color: 'orange' },
+                        { name: '总油耗', value: sumGaso.toFixed(2), color: 'yellow' },
+                        { name: '总路程', value: sumTrip.toFixed(2), color: 'pink' },
                     ];
                     const listEqual = [
-                        { name: '平均花费', value: (sumCost / tripNum).toFixed(2), color: 'orange' },
-                        { name: '平均油耗', value: (sumGaso / tripNum).toFixed(2), color: 'orange' },
-                        { name: '平均路程', value: (sumTrip / tripNum).toFixed(2), color: 'orange' }
+                        { name: '平均花费', value: (sumCost / tripNum).toFixed(2), color: 'cyan' },
+                        { name: '平均油耗', value: (sumGaso / tripNum).toFixed(2), color: 'blue' },
+                        { name: '平均路程', value: (sumTrip / tripNum).toFixed(2), color: 'mauve' }
                     ];
                     this.setData({
                         tripItems: {
@@ -301,36 +271,26 @@ Page({
                         const result = Math.floor(msDiff / 86400000);
                         if (result <= 1) {
                             listDay.push(res.data[i]);
-                            listWeek.push(res.data[i]);
-                            listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 7) {
                             listWeek.push(res.data[i]);
-                            listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 30) {
                             listMonth.push(res.data[i]);
-                            listHalfYear.push(res.data[i]);
-                            listYear.push(res.data[i]);
                         } else if (result <= 182) {
                             listHalfYear.push(res.data[i]);
                         } else if (result <= 365) {
                             listYear.push(res.data[i]);
-                            istYear.push(res.data[i]);
                         } else {
                             listOverYear.push(res.data[i]);
                         }
                     }
                     const listAll = [
-                        { name: '总花费', value: addCost.toFixed(2), color: 'orange', icon: 'redpacket' },
+                        { name: '总花费', value: addCost.toFixed(2), color: 'red' },
                         { name: '加油次数', value: addNum, color: 'orange' },
-                        { name: '总加油量', value: addGaso.toFixed(2), color: 'orange' }
+                        { name: '总加油量', value: addGaso.toFixed(2), color: 'pink' }
                     ];
                     const listEqual = [
-                        { name: '平均花费', value: (addCost / addNum).toFixed(2), color: 'orange' },
-                        { name: '平均加油量', value: (addGaso / addNum).toFixed(2), color: 'orange' }
+                        { name: '平均花费', value: (addCost / addNum).toFixed(2), color: 'cyan' },
+                        { name: '平均加油量', value: (addGaso / addNum).toFixed(2), color: 'blue' }
                     ];
                     this.setData({
                         addItems: {

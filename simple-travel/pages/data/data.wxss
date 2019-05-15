@@ -1,1 +1,6 @@
 @import "/app.wxss";
+
+
+.list-top text, .list-add-top text {
+    margin-right: 10rpx;
+}

@@ -10,7 +10,7 @@ Page({
         
         userInfo: {},
         true: true,
-       
+        gaso: '92#',
         index: '',
         price: '',
         num: '',
@@ -24,6 +24,12 @@ Page({
         this.setData({
             price: ev.detail.value
         });
+    },
+
+    changeGaso(ev) {
+        this.setData({
+            gaso: ev.target.dataset.name
+        })
     },
 
     // 实时更新单价
@@ -41,6 +47,7 @@ Page({
 
     // 计算最终的花费，将数据传输到后端，记录并更新数据表，返回结果
     uploadData() {
+        const gaso = this.data.gaso;
         const price = Number(this.data.price);
         const num = Number(this.data.num);
         const cost = (price * num).toFixed(2);
@@ -51,6 +58,7 @@ Page({
         const time = date.toLocaleString();
         const ms = Date.parse(new Date());
         const obj = {
+            gaso: gaso,
             price: price,
             num: num,
             cost: cost,
@@ -64,6 +72,7 @@ Page({
                 method: "post",
                 data: {
                     userId: app.globalData.userInfo.id,
+                    gaso: gaso,
                     price: price,
                     num: num,
                     cost: cost,
@@ -121,10 +130,14 @@ Page({
                 })
                 if (Object.keys(app.globalData.userInfo).length !== 0 && app.globalData.isUser === true) {
                     that.setData({
-                        price: app.globalData.userInfo.price,
                         amount: app.globalData.userInfo.amount,
                         userInfo: app.globalData.userInfo
                     })
+                    if (app.globalData.userInfo.price !== 0) {
+                        that.setData({
+                            price: app.globalData.userInfo.price
+                        })
+                    }
                 }
             }
         }, 500);

@@ -37,7 +37,7 @@
                 </view>
                 <view class="cu-item arrow">
                     <view class="content" bindtap='goToInfo'>
-                        <text class="cuIcon-{{app.globalData.isUser === true ? 'settingsfill' : 'lock'}} text-grey"></text>
+                        <text class="cuIcon-{{isUser === true ? 'settingsfill' : 'lock'}} text-grey"></text>
                         <text class="text-grey"> 账号信息 </text>
                     </view>
                 </view>

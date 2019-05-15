@@ -10,7 +10,7 @@ Page({
         isUser: false,
 
         // 系统默认数据
-
+        gaso: '92#',
         price: "",
         amount: "",
         trip: "",
@@ -21,14 +21,6 @@ Page({
         isDefaultPrice: false,
         isDefaultAmount: false
     },
-    /******************************** Top **********************************/
-    changeCar(ev) {
-        this.setData({
-            index: ev.detail.value
-        })
-    },
-
-
     /******************************* Main **********************************/
 
     // 单项选择： 选择汽油类型  ==>  更新价格
@@ -38,11 +30,28 @@ Page({
         });
     },
 
+    changeGaso(ev) {
+        this.setData({
+            gaso: ev.target.dataset.name
+        })
+    },
+
     // 实时更新单价
     changePrice(ev) {
         this.setData({
             price: ev.detail.value
         });
+        if (this.data.isUser === true && ev.detail.value !== undefined) {
+            const data = [app.globalData.userInfo.id, 'price', Number(ev.detail.value)];
+            wx.request({
+                url: 'https://www.tripspend.com/user/updateUser',
+                method: "post",
+                data: data,
+                header: {
+                    "Content-Type": "application/json"
+                }
+            });
+        }  
     },
     // 实时更新油耗     
     changeAmount(ev) { 
@@ -50,7 +59,7 @@ Page({
             amount: ev.detail.value
         });
         if(this.data.isUser === true && ev.detail.value !== undefined) {
-            const data = [app.globalData.userInfo.id, 'amount', ev.detail.value];
+            const data = [app.globalData.userInfo.id, 'amount', Number(ev.detail.value)];
             wx.request({
                 url: 'https://www.tripspend.com/user/updateUser',
                 method: "post",
@@ -70,6 +79,7 @@ Page({
 
     // 计算最终的花费，将数据传输到后端，记录并更新数据表，返回结果
     uploadData() {
+        const gaso = this.data.gaso;
         const price = Number(this.data.price);
         const amount = Number(this.data.amount);
         const amount1 = amount / 100;
@@ -82,6 +92,7 @@ Page({
         const time = date.toLocaleString();
         const ms = Date.parse(new Date());
         const obj = {
+            gaso: gaso,
             price: price,
             amount: amount,
             trip: trip,
@@ -96,6 +107,7 @@ Page({
                 method: "post",
                 data: {
                     userId: app.globalData.userInfo.id,
+                    gaso: gaso,
                     price: price,
                     amount: amount,
                     trip: trip,
@@ -153,7 +165,7 @@ Page({
 
                     updateTime: app.globalData.updateTime,
                     gasoline: app.globalData.gasoline,
-                    location: app.globalData.location,
+                    location: app.globalData.location
                 });
                 if (Object.keys(app.globalData.userInfo).length !== 0 && app.globalData.isUser === true) {
                     that.setData({
@@ -163,6 +175,11 @@ Page({
                         amount: app.globalData.userInfo.amount,
                         userInfo: app.globalData.userInfo
                     })
+                    if (app.globalData.userInfo.price !== 0) {
+                        that.setData({
+                            price: app.globalData.userInfo.price
+                        })
+                    }
                 }
             }
         }, 500);        

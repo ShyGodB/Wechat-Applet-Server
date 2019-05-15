@@ -6,9 +6,9 @@
                 <text class="text-danger ml-10">  {{updateTime}} </text>
             </view>
             <view class="price cu-list menu">
-                <radio-group class="radio-group w-100 mb-20" bindchange="radioChange">
+                <radio-group class="radio-group w-100 mb-10" bindchange="radioChange">
                     <view class="radio p-10 content" wx:for="{{gasoline}}" wx:key="{{}}">
-                        <radio value="{{item.value}}" checked="{{item.checked}}" />
+                        <radio value="{{item.value}}" bindtap='changeGaso' data-name="{{item.name}}" checked="{{item.checked}}" />
                         <text class="font-size-44 mr-6"> {{item.name}} </text>
                         <text class="font-size-32 text-secondary"> {{item.type}} </text>
                         <label class="float-right">
@@ -25,13 +25,13 @@
                 <text class="font-size-32 text-secondary float-right"> （元/升） </text>
             </view>
 
-            <view class="cu-form-group mb-30">
+            <view class="cu-form-group mb-10">
                 <view class="title"> 加油量 </view>
                 <input bindinput='changeNum' value="{{num}}" type="digit" placeholder="加油量"></input>
                 <text class="font-size-32 text-secondary float-right"> （升） </text>
             </view>
 
-            <view class="cu-form-group mb-30">
+            <view class="cu-form-group mb-20">
                 <view class="title"> 结果： ¥ </view>
                 <text class="text-danger font-size-44"> {{cost}} </text>
                 <text class="font-size-32 text-secondary float-right"> （元） </text>

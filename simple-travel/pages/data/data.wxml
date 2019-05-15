@@ -15,13 +15,13 @@
             <view class="grids mb-10">
                 <view wx:if= "{{mainTabCur === 0}}" class="grids-trip">
                     <view wx:if="{{hasUserData === true}}" class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
-                        <view class="cu-item" wx:for="{{tripItems.all}}" wx:key wx:if="{{index<gridCol}}">
+                        <view class="cu-item" wx:for="{{tripItems.all}}" wx:key wx:if="{{index<4}}">
                             <text class="font-size-44 text-{{item.color}}">{{item.value}}</text>
-                            <text class="cuIcon-{{item.icon}}">{{item.name}}</text>
+                            <text>{{item.name}}</text>
                         </view>
                         <view class="cu-item" wx:for="{{tripItems.equal}}" wx:key wx:if="{{index<gridCol}}">
                             <text class="font-size-44 text-{{item.color}}">{{item.value}}</text>
-                            <text class="cuIcon-{{item.icon}}">{{item.name}}</text>
+                            <text>{{item.name}}</text>
                         </view>
                     </view> 
 
@@ -54,16 +54,32 @@
                             </scroll-view>
                         </view>
 
+                        <!-- 列表说明 -->
+                        <view class="cu-list menu">
+                            <view class="cu-item">
+                                <view class="list-top content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    <text class="text-blue"> 价格 </text>
+                                    <text class="text-orange"> 油耗 </text>
+                                    <text class="text-purple"> 路程 </text>
+                                    <text class="text-red"> 花费 </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-brown"> 时间 </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
                         <view  wx:if="{{tripItems.day.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{tripItems.day}}" wx:key>
                             <view class="cu-item">
                                 <view class="content text-red">
                                     <text class="cuIcon-circlefill text-grey"></text>
-                                    {{item.price}}
-                                    <text class="text-blue"> {{item.amount}} </text>
-                                    <text class="text-yello"> {{item.trip}} </text>
-                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <text class="text-blue"> {{item.price}} </text>
+                                    <text class="text-orange"> {{item.amount}} </text>
+                                    <text class="text-purple"> {{item.trip}} </text>
+                                    <text class="text-red"> {{item.cost}} </text>
                                     <view class="d-inline-block float-right">
-                                        <text class="text-green"> {{item.time}} </text>
+                                        <text class="text-brown"> {{item.time}} </text>
                                     </view>
                                 </view>
                             </view>
@@ -84,16 +100,32 @@
                             </scroll-view>
                         </view>
 
+                        <!-- 列表说明 -->
+                        <view class="cu-list menu">
+                            <view class="cu-item">
+                                <view class="list-top content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    <text class="text-blue"> 价格 </text>
+                                    <text class="text-orange"> 油耗 </text>
+                                    <text class="text-purple"> 路程 </text>
+                                    <text class="text-red"> 花费 </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-brown"> 时间 </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
                         <view wx:if="{{tripItems.week.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{tripItems.week}}" wx:key>
                             <view class="cu-item">
                                 <view class="content text-red">
                                     <text class="cuIcon-circlefill text-grey"></text>
-                                    {{item.price}}
-                                    <text class="text-blue"> {{item.amount}} </text>
-                                    <text class="text-yello"> {{item.trip}} </text>
-                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <text class="text-blue"> {{item.price}} </text>
+                                    <text class="text-orange"> {{item.amount}} </text>
+                                    <text class="text-purple"> {{item.trip}} </text>
+                                    <text class="text-red"> {{item.cost}} </text>
                                     <view class="d-inline-block float-right">
-                                        <text class="text-green"> {{item.time}} </text>
+                                        <text class="text-brown"> {{item.time}} </text>
                                     </view>
                                 </view>
                             </view>
@@ -114,16 +146,32 @@
                             </scroll-view>
                         </view>
 
+                        <!-- 列表说明 -->
+                        <view class="cu-list menu">
+                            <view class="cu-item">
+                                <view class="list-top content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    <text class="text-blue"> 价格 </text>
+                                    <text class="text-orange"> 油耗 </text>
+                                    <text class="text-purple"> 路程 </text>
+                                    <text class="text-red"> 花费 </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-brown"> 时间 </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
                         <view wx:if="{{tripItems.month.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{tripItems.month}}" wx:key>
                             <view class="cu-item">
                                 <view class="content text-red">
                                     <text class="cuIcon-circlefill text-grey"></text>
-                                    {{item.price}}
-                                    <text class="text-blue"> {{item.amount}} </text>
-                                    <text class="text-yello"> {{item.trip}} </text>
-                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <text class="text-blue"> {{item.price}} </text>
+                                    <text class="text-orange"> {{item.amount}} </text>
+                                    <text class="text-purple"> {{item.trip}} </text>
+                                    <text class="text-red"> {{item.cost}} </text>
                                     <view class="d-inline-block float-right">
-                                        <text class="text-green"> {{item.time}} </text>
+                                        <text class="text-brown"> {{item.time}} </text>
                                     </view>
                                 </view>
                             </view>
@@ -144,16 +192,32 @@
                             </scroll-view>
                         </view>
 
+                        <!-- 列表说明 -->
+                        <view class="cu-list menu">
+                            <view class="cu-item">
+                                <view class="list-top content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    <text class="text-blue"> 价格 </text>
+                                    <text class="text-orange"> 油耗 </text>
+                                    <text class="text-purple"> 路程 </text>
+                                    <text class="text-red"> 花费 </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-brown"> 时间 </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
                         <view wx:if="{{tripItems.halfYear.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{tripItems.halfYear}}" wx:key>
                             <view class="cu-item">
                                 <view class="content text-red">
                                     <text class="cuIcon-circlefill text-grey"></text>
-                                    {{item.price}}
-                                    <text class="text-blue"> {{item.amount}} </text>
-                                    <text class="text-yello"> {{item.trip}} </text>
-                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <text class="text-blue"> {{item.price}} </text>
+                                    <text class="text-orange"> {{item.amount}} </text>
+                                    <text class="text-purple"> {{item.trip}} </text>
+                                    <text class="text-red"> {{item.cost}} </text>
                                     <view class="d-inline-block float-right">
-                                        <text class="text-green"> {{item.time}} </text>
+                                        <text class="text-brown"> {{item.time}} </text>
                                     </view>
                                 </view>
                             </view>
@@ -174,16 +238,32 @@
                             </scroll-view>
                         </view>
 
+                        <!-- 列表说明 -->
+                        <view class="cu-list menu">
+                            <view class="cu-item">
+                                <view class="list-top content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    <text class="text-blue"> 价格 </text>
+                                    <text class="text-orange"> 油耗 </text>
+                                    <text class="text-purple"> 路程 </text>
+                                    <text class="text-red"> 花费 </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-brown"> 时间 </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
                         <view wx:if="{{tripItems.year.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{tripItems.year}}" wx:key>
                             <view class="cu-item">
                                 <view class="content text-red">
                                     <text class="cuIcon-circlefill text-grey"></text>
-                                    {{item.price}}
-                                    <text class="text-blue"> {{item.amount}} </text>
-                                    <text class="text-yello"> {{item.trip}} </text>
-                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <text class="text-blue"> {{item.price}} </text>
+                                    <text class="text-orange"> {{item.amount}} </text>
+                                    <text class="text-purple"> {{item.trip}} </text>
+                                    <text class="text-red"> {{item.cost}} </text>
                                     <view class="d-inline-block float-right">
-                                        <text class="text-green"> {{item.time}} </text>
+                                        <text class="text-brown"> {{item.time}} </text>
                                     </view>
                                 </view>
                             </view>
@@ -242,15 +322,32 @@
                             </scroll-view>
                         </view>
 
+                        <!-- 列表说明 -->
+                        <view class="cu-list menu">
+                            <view class="cu-item">
+                                <view class="list-add-top content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    <text class="text-cyan"> 油型 </text>
+                                    <text class="text-blue"> 价格 </text>
+                                    <text class="text-purple"> 加油量 </text>
+                                    <text class="text-red"> 花费 </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-brown"> 时间 </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
                         <view  wx:if="{{addItems.day.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{addItems.day}}" wx:key>
                             <view class="cu-item">
                                 <view class="content text-red">
                                     <text class="cuIcon-circlefill text-grey"></text>
-                                    {{item.price}}
-                                    <text class="text-yello"> {{item.num}} </text>
-                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <text class="text-cyan"> {{item.gaso}} </text>
+                                    <text class="text-blue"> {{item.price}} </text>
+                                    <text class="text-orange"> {{item.num}} </text>
+                                    <text class="red"> {{item.cost}} </text>
                                     <view class="d-inline-block float-right">
-                                        <text class="text-green"> {{item.time}} </text>
+                                        <text class="text-brown"> {{item.time}} </text>
                                     </view>
                                 </view>
                             </view>
@@ -271,15 +368,32 @@
                             </scroll-view>
                         </view>
 
+                        <!-- 列表说明 -->
+                        <view class="cu-list menu">
+                            <view class="cu-item">
+                                <view class="list-add-top content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    <text class="text-cyan"> 油型 </text>
+                                    <text class="text-blue"> 价格 </text>
+                                    <text class="text-purple"> 加油量 </text>
+                                    <text class="text-red"> 花费 </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-brown"> 时间 </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
                         <view wx:if="{{addItems.week.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{addItems.week}}" wx:key>
                             <view class="cu-item">
                                 <view class="content text-red">
                                     <text class="cuIcon-circlefill text-grey"></text>
-                                    {{item.price}}
-                                    <text class="text-yello"> {{item.num}} </text>
-                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <text class="text-cyan"> {{item.gaso}} </text>
+                                    <text class="text-blue"> {{item.price}} </text>
+                                    <text class="text-orange"> {{item.num}} </text>
+                                    <text class="red"> {{item.cost}} </text>
                                     <view class="d-inline-block float-right">
-                                        <text class="text-green"> {{item.time}} </text>
+                                        <text class="text-brown"> {{item.time}} </text>
                                     </view>
                                 </view>
                             </view>
@@ -300,15 +414,32 @@
                             </scroll-view>
                         </view>
 
+                        <!-- 列表说明 -->
+                        <view class="cu-list menu">
+                            <view class="cu-item">
+                                <view class="list-add-top content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    <text class="text-cyan"> 油型 </text>
+                                    <text class="text-blue"> 价格 </text>
+                                    <text class="text-purple"> 加油量 </text>
+                                    <text class="text-red"> 花费 </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-brown"> 时间 </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
                         <view wx:if="{{addItems.month.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{addItems.month}}" wx:key>
                             <view class="cu-item">
                                 <view class="content text-red">
                                     <text class="cuIcon-circlefill text-grey"></text>
-                                    {{item.price}}
-                                    <text class="text-yello"> {{item.num}} </text>
-                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <text class="text-cyan"> {{item.gaso}} </text>
+                                    <text class="text-blue"> {{item.price}} </text>
+                                    <text class="text-orange"> {{item.num}} </text>
+                                    <text class="red"> {{item.cost}} </text>
                                     <view class="d-inline-block float-right">
-                                        <text class="text-green"> {{item.time}} </text>
+                                        <text class="text-brown"> {{item.time}} </text>
                                     </view>
                                 </view>
                             </view>
@@ -329,15 +460,32 @@
                             </scroll-view>
                         </view>
 
+                        <!-- 列表说明 -->
+                        <view class="cu-list menu">
+                            <view class="cu-item">
+                                <view class="list-add-top content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    <text class="text-cyan"> 油型 </text>
+                                    <text class="text-blue"> 价格 </text>
+                                    <text class="text-purple"> 加油量 </text>
+                                    <text class="text-red"> 花费 </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-brown"> 时间 </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
                         <view wx:if="{{addItems.halfYear.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{addItems.halfYear}}" wx:key>
                             <view class="cu-item">
                                 <view class="content text-red">
                                     <text class="cuIcon-circlefill text-grey"></text>
-                                    {{item.price}}
-                                    <text class="text-yello"> {{item.num}} </text>
-                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <text class="text-cyan"> {{item.gaso}} </text>
+                                    <text class="text-blue"> {{item.price}} </text>
+                                    <text class="text-orange"> {{item.num}} </text>
+                                    <text class="red"> {{item.cost}} </text>
                                     <view class="d-inline-block float-right">
-                                        <text class="text-green"> {{item.time}} </text>
+                                        <text class="text-brown"> {{item.time}} </text>
                                     </view>
                                 </view>
                             </view>
@@ -358,15 +506,32 @@
                             </scroll-view>
                         </view>
 
+                        <!-- 列表说明 -->
+                        <view class="cu-list menu">
+                            <view class="cu-item">
+                                <view class="list-add-top content text-red">
+                                    <text class="cuIcon-circlefill text-grey"></text>
+                                    <text class="text-cyan"> 油型 </text>
+                                    <text class="text-blue"> 价格 </text>
+                                    <text class="text-purple"> 加油量 </text>
+                                    <text class="text-red"> 花费 </text>
+                                    <view class="d-inline-block float-right">
+                                        <text class="text-brown"> 时间 </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view> 
+
                         <view wx:if="{{addItems.year.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{addItems.year}}" wx:key>
                             <view class="cu-item">
                                 <view class="content text-red">
                                     <text class="cuIcon-circlefill text-grey"></text>
-                                    {{item.price}}
-                                    <text class="text-yello"> {{item.num}} </text>
-                                    <text class="text-orange"> {{item.cost}} </text>
+                                    <text class="text-cyan"> {{item.gaso}} </text>
+                                    <text class="text-blue"> {{item.price}} </text>
+                                    <text class="text-orange"> {{item.num}} </text>
+                                    <text class="red"> {{item.cost}} </text>
                                     <view class="d-inline-block float-right">
-                                        <text class="text-green"> {{item.time}} </text>
+                                        <text class="text-brown"> {{item.time}} </text>
                                     </view>
                                 </view>
                             </view>

@@ -2,7 +2,8 @@ const app = getApp()
 
 Page({
     data: {
-        userInfo: app.globalData.userInfo,
+        userInfo: {},
+        isUser: false,
         beEdit: true,
         canEditGender: true,
         birthday: '2019-2-1',
@@ -81,6 +82,7 @@ Page({
     onLoad() {
         const userInfo = app.globalData.userInfo;
         this.setData({
+            isUser: app.globalData.isUser,
             userInfo: userInfo,
             nickname: userInfo.nickname,
             gender: userInfo.gender,

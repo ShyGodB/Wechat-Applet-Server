@@ -1,5 +1,5 @@
 <view class="container flex p-20">
-    <view class="topBox mb-20 w-100 flex">
+    <view class="topBox mb-10 w-100 flex">
         <view class="top-left top w-100">
             <view class="text-orange font-size-40">
                 {{isUser === true ? userInfo.nickname : 'admin' }}
@@ -13,16 +13,16 @@
         </view>
     </view>
 
-    <view class="mainBox w-100 flex mb-20">
+    <view class="mainBox w-100 flex mb-10">
         <view class="content w-100">
             <view class="updateTime mb-10 p-10 font-size-40">  
                 <text> 调价时间: </text>
                 <text class="text-danger ml-10">  {{updateTime}} </text>
             </view>
             <view class="price cu-list menu">
-                <radio-group class="radio-group w-100 mb-20" bindchange="radioChange">
+                <radio-group class="radio-group w-100 mb-20"  bindchange="radioChange">
                     <view class="radio p-10 content" wx:for="{{gasoline}}" wx:key="{{}}">
-                        <radio value="{{item.value}}" checked="{{item.checked}}" />
+                        <radio value="{{item.value}}" bindtap='changeGaso' data-name="{{item.name}}" checked="{{item.checked}}" />
                         <text class="font-size-44 mr-6"> {{item.name}} </text>
                         <text class="font-size-32 text-secondary"> {{item.type}} </text>
                         <label class="float-right">
@@ -43,13 +43,13 @@
                 <input bindinput='changeAmount' value="{{(isDefaultAmount === false || amount.lenght === 0)? '' : amount}}" type="digit" placeholder="汽车油耗参数"></input>
                 <text class="font-size-32 text-secondary float-right"> （百公里/升） </text>
             </view>
-            <view class="cu-form-group mb-20">
+            <view class="cu-form-group mb-10">
                 <view class="title">路程</view>
                 <input class="tripAmount text-danger font-size-44 d-inline-block" bindinput='changeTrip' value="{{trip}}" type="digit" placeholder="大致路程"></input>
                 <text class="font-size-32 text-secondary float-right"> （公里） </text>
             </view>
 
-            <view class="cu-form-group mb-30">
+            <view class="cu-form-group mb-20">
                 <view class="title"> 结果： ¥ </view>
                 <text class="text-danger font-size-44"> {{cost}} </text>
                 <text class="font-size-32 text-secondary float-right"> （元） </text>
