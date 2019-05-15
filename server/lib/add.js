@@ -13,7 +13,7 @@ const promisePool = pool.promise();
 const object = {
 
     async addGasolineRecord(data) {
-        const sql = "insert into record_gasoline(user_id, price, num, cost, ms, time) values(?, ?, ?, ?, ?, ?)";
+        const sql = "insert into record_gasoline(user_id, gasoline, price, num, cost, ms, time) values(?, ?, ?, ?, ?, ?, ?)";
         await promisePool.query(sql, data);
     },
 

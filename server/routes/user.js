@@ -58,7 +58,6 @@ router.post('/user/updateUser', async (ctx) => {
     const data = ctx.request.body;
     const id = data[0];
     const name = data[1];
-    console.log(data);
     switch(name) {
     	case 'price':
     	    const price1 = data[2];

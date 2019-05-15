@@ -7,14 +7,14 @@ const router = new Router();
 router.post("/addTripRecord", async (ctx) => {
     const uploadedData = ctx.request.body;
     const userId = uploadedData.userId;
+    const gaso = uploadedData.gaso;
     const price = uploadedData.price;
     const amount = uploadedData.amount;
     const trip = uploadedData.trip;
     const cost = uploadedData.cost;
     const ms = uploadedData.ms;
     const time = uploadedData.time;
-    const data = [userId, price, amount, trip, cost, ms, time];
-    console.log(data);
+    const data = [userId, gaso, price, amount, trip, cost, ms, time];
     const addTripRecordPromise = drive.addTripRecord(data);
     await addTripRecordPromise;
     ctx.body = {msg: '新增数据成功'};

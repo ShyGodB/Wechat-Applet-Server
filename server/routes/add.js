@@ -7,13 +7,13 @@ const router = new Router();
 router.post("/addGasolineRecord", async (ctx) => {
     const uploadedData = ctx.request.body;
     const userId = uploadedData.userId;
+    const gaso = uploadedData.gaso;
     const price = uploadedData.price;
     const num = uploadedData.num;
     const cost = uploadedData.cost;
     const ms = uploadedData.ms;
     const time = uploadedData.time;
-    const data = [userId, price, num, cost, ms, time];
-    console.log(data);
+    const data = [userId, gaso, price, num, cost, ms, time];
     const addGasolineRecordPromise = add.addGasolineRecord(data);
     await addGasolineRecordPromise;
     ctx.body = {msg: '新增数据成功'};
