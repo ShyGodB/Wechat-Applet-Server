@@ -79,18 +79,20 @@ Page({
 
     // 计算最终的花费，将数据传输到后端，记录并更新数据表，返回结果
     uploadData() {
-        const gaso = this.data.gaso;
-        const price = Number(this.data.price);
-        const amount = Number(this.data.amount);
-        const amount1 = amount / 100;
-        const trip = Number(this.data.trip);
-        const cost = price * amount1 * trip;
+        const gaso = this.data.gaso,
+              price = Number(this.data.price),
+              amount = Number(this.data.amount),
+              amount1 = amount / 100,
+              trip = Number(this.data.trip),
+              cost = price * amount1 * trip,
+              date = new Date(),
+              time = date.toLocaleString(),
+              ms = Date.parse(new Date());
+
         this.setData({
             cost: cost.toFixed(2)
         });
-        const date = new Date();
-        const time = date.toLocaleString();
-        const ms = Date.parse(new Date());
+        
         const obj = {
             gaso: gaso,
             price: price,
@@ -184,10 +186,7 @@ Page({
             }
         }, 500);        
     },
-    onShow() {
-        this.onLoad();
-    },
-    onPullDownRefresh: function () {
+    onPullDownRefresh() {
         this.onLoad();
     }
 });

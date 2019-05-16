@@ -51,12 +51,12 @@ Page({
             userId = '-1';
             userName = '用户***';
         }
-        const type = this.data.selected;
-        const title = this.data.title;
-        const msg = this.data.msg;
-        const mobile = this.data.mobile;
-        const email = this.data.email;
-        const qq = this.data.qq;
+        const type = this.data.selected,
+              title = this.data.title,
+              msg = this.data.msg,
+              mobile = this.data.mobile,
+              email = this.data.email,
+              qq = this.data.qq;
         const feedback = [userId, userName, type, title, msg, mobile, email, qq];
         if (mobile.length !== 11 || type.length === 0 || msg.length === 0) {
             wx.showModal({

@@ -79,24 +79,21 @@ Page({
                     "Content-Type": "application/json"
                 },
                 success: (res) => {
-                    const tripNum = res.data.length;
-                    let sumCost = 0;
-                    let sumGaso = 0;
-                    let sumTrip = 0;
-                    for (let i = 0; i < res.data.length; i++) {
+                    const tripNum = res.data.length,
+                          len = res.data.length;
+                    let sumCost = 0,
+                        sumGaso = 0,
+                        sumTrip = 0;
+                    for (let i = 0; i < len; i++) {
                         sumCost += Number(res.data[i].cost);
                         sumGaso += Number(res.data[i].cost) / res.data[i].price;
                         sumTrip += res.data[i].trip;
                     }
                     this.setData({
                         tripItems: [
-                            { name: '总花费', value: sumCost.toFixed(2), color: 'orange', icon: 'redpacket' },
+                            { name: '总花费', value: sumCost.toFixed(2), color: 'orange' },
                             { name: '出行次数', value: tripNum, color: 'red' },
-                            { name: '总油耗', value: sumGaso.toFixed(2), color: 'yellow' },
-                            { name: '总路程', value: sumTrip.toFixed(2), color: 'grey' },
-                            { name: '平均花费', value: (sumCost / tripNum).toFixed(2), color: 'grey' },
-                            { name: '平均油耗', value: (sumGaso / tripNum).toFixed(2), color: 'grey' },
-                            { name: '平均路程', value: (sumTrip / tripNum).toFixed(2), color: 'grey' }
+                            { name: '总路程', value: sumTrip.toFixed(2), color: 'grey' }
                         ]
                     })
                 }
@@ -113,10 +110,11 @@ Page({
                     "Content-Type": "application/json"
                 },
                 success: (res) => {
-                    const addNum = res.data.length;
-                    let addCost = 0;
-                    let addGaso = 0;
-                    for (let i = 0; i < res.data.length; i++) {
+                    const addNum = res.data.length
+                          len = res.data.length;
+                    let addCost = 0,
+                        addGaso = 0;
+                    for (let i = 0; i < len; i++) {
                         addCost += res.data[i].cost;
                         addGaso += res.data[i].cost / res.data[i].price;
                     }
@@ -125,8 +123,6 @@ Page({
                             { name: '总花费', value: addCost.toFixed(2), color: 'olive', icon: 'redpacket' },
                             { name: '加油次数', value: addNum, color: 'green' },
                             { name: '总加油量', value: addGaso.toFixed(2), color: 'cyan' },
-                            { name: '平均花费', value: (addCost / addNum).toFixed(2), color: 'gray' },
-                            { name: '平均加油量', value: (addGaso / addNum).toFixed(2), color: 'gray' }
                         ]
                     })
                 }
@@ -141,11 +137,12 @@ Page({
             wx.getStorage({
                 key: 'trip',
                 success: (res) => {
-                    const tripNum = res.data.length;
-                    let sumCost = 0;
-                    let sumGaso = 0;
-                    let sumTrip = 0;
-                    for (let i = 0; i < res.data.length; i++) {
+                    const tripNum = res.data.length,
+                          len = res.data.length;
+                    let sumCost = 0,
+                        sumGaso = 0,
+                        sumTrip = 0;
+                    for (let i = 0; i < len; i++) {
                         sumCost += Number(res.data[i].cost);
                         sumGaso += Number(res.data[i].cost) / res.data[i].price;
                         sumTrip += res.data[i].trip;
@@ -154,11 +151,7 @@ Page({
                         tripItems: [
                             { name: '总花费', value: sumCost.toFixed(2), color: 'orange', icon: 'redpacket' },
                             { name: '出行次数', value: tripNum, color: 'red' },
-                            { name: '总油耗', value: sumGaso.toFixed(2), color: 'yellow' },
-                            { name: '总路程', value: sumTrip.toFixed(2), color: 'grey' },
-                            { name: '平均花费', value: (sumCost / tripNum).toFixed(2), color: 'grey' },
-                            { name: '平均油耗', value: (sumGaso / tripNum).toFixed(2), color: 'grey' },
-                            { name: '平均路程', value: (sumTrip / tripNum).toFixed(2), color: 'grey' }
+                            { name: '总路程', value: sumTrip.toFixed(2), color: 'grey' }
                         ]
                     })
                 }
@@ -167,10 +160,11 @@ Page({
             wx.getStorage({
                 key: 'add',
                 success: (res) => {
-                    const addNum = res.data.length;
-                    let addCost = 0;
-                    let addGaso = 0;
-                    for (let i = 0; i < res.data.length; i++) {
+                    const addNum = res.data.length,
+                          len = res.data.length;
+                    let addCost = 0,
+                        addGaso = 0;
+                    for (let i = 0; i < len; i++) {
                         addCost += Number(res.data[i].cost);
                         addGaso += Number(res.data[i].cost) / res.data[i].price;
                     }
@@ -179,18 +173,13 @@ Page({
                             { name: '总花费', value: addCost.toFixed(2), color: 'olive', icon: 'redpacket' },
                             { name: '加油次数', value: addNum, color: 'green' },
                             { name: '总加油量', value: addGaso.toFixed(2), color: 'cyan' },
-                            { name: '平均花费', value: (addCost / addNum).toFixed(2), color: 'gray' },
-                            { name: '平均加油量', value: (addGaso / addNum).toFixed(2), color: 'gray' }
                         ]
                     })
                 }
             })
         }
     },
-    onShow() {
-        this.onLoad();
-    },
-    onPullDownRefresh: function () {
+    onPullDownRefresh () {
         this.onLoad();
     }
 

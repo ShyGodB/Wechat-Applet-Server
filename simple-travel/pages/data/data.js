@@ -7,7 +7,6 @@ Page({
         hasUserData: true,
         isUser: false,
 
-
         mainTabCur: 0,
         mainScrollLeft: 0,
 
@@ -52,27 +51,29 @@ Page({
                     "Content-Type": "application/json"
                 },
                 success: (res) => {
-                    const date = new Date();
-                    const time = date.toLocaleString().substring(0, 8);
-                    const msNow = Date.parse(new Date());
-                    let listDay = [];
-                    let listWeek = [];
-                    let listMonth = [];
-                    let listHalfYear = [];
-                    let listYear = [];
-                    let listOverYear = [];
+                    const date = new Date(),
+                          time = date.toLocaleString().substring(0, 8),
+                          msNow = Date.parse(new Date()),
+                          len = res.data.length,
+                          tripNum = res.data.length;
 
-                    const tripNum = res.data.length;
-                    let sumCost = 0;
-                    let sumGaso = 0;
-                    let sumTrip = 0;
-                    for (let i = 0; i < res.data.length; i++) {
+                    let sumCost = 0,
+                        sumGaso = 0,   
+                        sumTrip = 0,
+                        listDay = [],
+                        listWeek = [],
+                        listMonth = [],
+                        listHalfYear = [],
+                        listYear = [],
+                        listOverYear = [];
+
+                    for (let i = 0; i < len; i++) {
                         sumCost += Number(res.data[i].cost);
                         sumGaso += Number(res.data[i].cost) / res.data[i].price;
                         sumTrip += res.data[i].trip;
-                        const ms = res.data[i].ms;
-                        const msDiff = msNow - ms;
-                        const result = Math.floor(msDiff / 86400000);
+                        const ms = res.data[i].ms,
+                              msDiff = msNow - ms,
+                              result = Math.floor(msDiff / 86400000);
                         if (result <= 1) {
                             listDay.push(res.data[i]);
                         } else if (result <= 7) {
@@ -124,25 +125,27 @@ Page({
                     "Content-Type": "application/json"
                 },
                 success: (res) => {
-                    const date = new Date();
-                    const time = date.toLocaleString().substring(0, 8);
-                    const msNow = Date.parse(new Date());
-                    let listDay = [];
-                    let listWeek = [];
-                    let listMonth = [];
-                    let listHalfYear = [];
-                    let listYear = [];
-                    let listOverYear = [];
+                    const date = new Date(),
+                          time = date.toLocaleString().substring(0, 8),
+                          msNow = Date.parse(new Date()),
+                          addNum = res.data.length,
+                          len = res.data.length;
 
-                    const addNum = res.data.length;
-                    let addCost = 0;
-                    let addGaso = 0;
-                    for (let i = 0; i < res.data.length; i++) {
+                    let addCost = 0,
+                        addGaso = 0,
+                        listDay = [],
+                        listWeek = [],
+                        listMonth = [],
+                        listHalfYear = [],
+                        listYear = [],
+                        listOverYear = [];
+                    
+                    for (let i = 0; i < len; i++) {
                         addCost += Number(res.data[i].cost);
                         addGaso += Number(res.data[i].cost) / res.data[i].price;
-                        const ms = res.data[i].ms;
-                        const msDiff = msNow - ms;
-                        const result = Math.floor(msDiff / 86400000);
+                        const ms = res.data[i].ms,
+                              msDiff = msNow - ms,
+                              result = Math.floor(msDiff / 86400000);
                         if (result <= 1) {
                             listDay.push(res.data[i]);
                         } else if (result <= 7) {
@@ -184,26 +187,28 @@ Page({
             wx.getStorage({
                 key: 'trip',
                 success: (res) => {
-                    const date = new Date();
-                    const time = date.toLocaleString().substring(0,8);
-                    const msNow = Date.parse(new Date());
-                    let listDay = [];
-                    let listWeek = [];
-                    let listMonth = [];
-                    let listHalfYear = [];
-                    let listYear = [];
-                    let listOverYear = [];
-                    const tripNum = res.data.length;
-                    let sumCost = 0;
-                    let sumGaso = 0;
-                    let sumTrip = 0;
-                    for (let i = 0; i < res.data.length; i++) {
+                    const date = new Date(),
+                          time = date.toLocaleString().substring(0, 8),
+                          msNow = Date.parse(new Date()),
+                          len = res.data.length,
+                          tripNum = res.data.length;
+
+                    let sumCost = 0,
+                        sumGaso = 0,
+                        sumTrip = 0,
+                        listDay = [],
+                        listWeek = [],
+                        listMonth = [],
+                        listHalfYear = [],
+                        listYear = [],
+                        listOverYear = [];
+                    for (let i = 0; i < len; i++) {
                         sumCost += Number(res.data[i].cost);
                         sumGaso += Number(res.data[i].cost) / res.data[i].price;
                         sumTrip += res.data[i].trip;
-                        const ms = res.data[i].ms;
-                        const msDiff = msNow - ms;
-                        const result = Math.floor(msDiff/86400000);
+                        const ms = res.data[i].ms,
+                              msDiff = msNow - ms,
+                              result = Math.floor(msDiff/86400000);
                         if(result <= 1) {
                             listDay.push(res.data[i]);
                         } else if (result <= 7 ) {
@@ -241,34 +246,33 @@ Page({
                             length: res.data.length
                         }
                     });
-                },
-                fail: (res) => {
-                    console.log(res)
                 }
             })
 
             wx.getStorage({
                 key: 'add',
                 success: (res) => {
-                    const date = new Date();
-                    const time = date.toLocaleString().substring(0, 8);
-                    const msNow = Date.parse(new Date());
-                    let listDay = [];
-                    let listWeek = [];
-                    let listMonth = [];
-                    let listHalfYear = [];
-                    let listYear = [];
-                    let listOverYear = [];
+                    const date = new Date(),
+                          time = date.toLocaleString().substring(0, 8),
+                          msNow = Date.parse(new Date()),
+                          len = res.data.length,
+                          addNum = res.data.length;
 
-                    const addNum = res.data.length;
-                    let addCost = 0;
-                    let addGaso = 0;
-                    for (let i = 0; i < res.data.length; i++) {
+                    let addCost = 0,
+                        addGaso = 0,
+                        listDay = [],
+                        listWeek = [],
+                        listMonth = [],
+                        listHalfYear = [],
+                        listYear = [],
+                        listOverYear = [];
+
+                    for (let i = 0; i < len; i++) {
                         addCost += Number(res.data[i].cost);
                         addGaso += Number(res.data[i].cost) / res.data[i].price;
-                        const ms = res.data[i].ms;
-                        const msDiff = msNow - ms;
-                        const result = Math.floor(msDiff / 86400000);
+                        const ms = res.data[i].ms,
+                              msDiff = msNow - ms,
+                              result = Math.floor(msDiff / 86400000);
                         if (result <= 1) {
                             listDay.push(res.data[i]);
                         } else if (result <= 7) {
@@ -304,17 +308,11 @@ Page({
                             length: res.data.length
                         }
                     })
-                },
-                fail: (res) => {
-                    console.log(res)
                 }
             })
         }
     },
-    onShow() {
-        this.onLoad();
-    },
-    onPullDownRefresh: function () {
+    onPullDownRefresh() {
         this.onLoad();
     }
 })

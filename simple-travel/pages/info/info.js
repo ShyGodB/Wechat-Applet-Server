@@ -28,9 +28,9 @@ Page({
         })
     },
     changeTime(ev) {
-        const id = app.globalData.userInfo.id;
-        const name = '生日';
-        const value = ev.detail.value;
+        const id = app.globalData.userInfo.id,
+              name = '生日',
+              value = ev.detail.value;
         this.setData({
             birthday: value
         });
@@ -46,9 +46,9 @@ Page({
         });
     },
     changeAddress(ev) {
-        const id = app.globalData.userInfo.id;
-        const name = '地址';
-        const addressArray = ev.detail.value;
+        const id = app.globalData.userInfo.id,
+              name = '地址',
+              addressArray = ev.detail.value;
         const value = addressArray[0] + '，' + addressArray[1] + '，' + addressArray[2];
         this.setData({
             address: value
@@ -109,9 +109,9 @@ Page({
         })
     },
     radioChange(ev) {
-        const id = app.globalData.userInfo.id;
-        const name = '性别';
-        const value = ev.detail.value;
+        const id = app.globalData.userInfo.id,
+              name = '性别',
+              value = ev.detail.value;
         const data = [id, name, value];
 
         this.setData({
@@ -190,10 +190,7 @@ Page({
             }  
         } 
     },
-    onShow() {
-        this.onLoad();
-    },
-    onPullDownRefresh: function () {
+    onPullDownRefresh() {
         this.onLoad();
     }
 
