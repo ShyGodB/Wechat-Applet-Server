@@ -34,14 +34,22 @@ Page({
 
     // 实时更新单价
     changePrice(ev) {
+        const price = Number(ev.detail.value);
+        const num = Number(this.data.num);
+        const cost = (price * num).toFixed(2);
         this.setData({
-            price: ev.detail.value
+            price: ev.detail.value,
+            cost: cost
         });
     },
 
     changeNum(ev) {
+        const price = Number(this.data.price);
+        const num = Number(ev.detail.value);
+        const cost = (price * num).toFixed(2);
         this.setData({
-            num: ev.detail.value
+            num: ev.detail.value,
+            cost: cost 
         })
     },
 
@@ -55,10 +63,6 @@ Page({
               time = date.toLocaleString(),
               ms = Date.parse(new Date());
 
-        this.setData({
-            cost: cost
-        });
-        
         const obj = {
             gaso: gaso,
             price: price,

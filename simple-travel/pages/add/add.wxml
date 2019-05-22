@@ -21,26 +21,26 @@
 
             <view class="cu-form-group margin-top">
                 <view class="title"> 单价 </view>
-                <input bindinput='changePrice' id="{{index}}" value="{{(isDefaultPrice === false || price.length === 0)? gasoline[index].value :  price}}" type="digit" placeholder="汽油价格"></input>
+                <input bindinput='changePrice' id="{{index}}" value="{{(isDefaultPrice === false || price.length === 0)? gasoline[index].value :  price}}" type="digit" placeholder="汽油价格" placeholder-class='small-grey'></input>
                 <text class="font-size-32 text-secondary float-right"> （元/升） </text>
             </view>
 
             <view class="cu-form-group mb-10">
                 <view class="title"> 加油量 </view>
-                <input bindinput='changeNum' value="{{num}}" type="digit" placeholder="加油量"></input>
+                <input bindinput='changeNum' value="{{num}}" type="digit" placeholder="加油量" placeholder-class='small-grey'></input>
                 <text class="font-size-32 text-secondary float-right"> （升） </text>
             </view>
 
             <view class="cu-form-group mb-20">
                 <view class="title"> 结果： ¥ </view>
-                <text class="text-danger font-size-44"> {{cost}} </text>
+                <text class="text-orange font-size-44"> {{cost}} </text>
                 <text class="font-size-32 text-secondary float-right"> （元） </text>
             </view>
         </view>
     </view>
 
     <view class="bottomBox w-100 flex">
-        <button class="weui-btn calculate" type="primary" bindtap='uploadData'> 计算 </button>
+        <button class="weui-btn calculate" type="primary" bindtap='uploadData'> 上传数据 </button>
     </view>
 </view>
 

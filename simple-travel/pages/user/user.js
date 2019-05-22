@@ -93,7 +93,7 @@ Page({
                         tripItems: [
                             { name: '总花费', value: sumCost.toFixed(2), color: 'orange' },
                             { name: '出行次数', value: tripNum, color: 'red' },
-                            { name: '总路程', value: sumTrip.toFixed(2), color: 'grey' }
+                            { name: '总路程', value: sumTrip.toFixed(2), color: 'yellow' }
                         ]
                     })
                 }
@@ -151,7 +151,7 @@ Page({
                         tripItems: [
                             { name: '总花费', value: sumCost.toFixed(2), color: 'orange', icon: 'redpacket' },
                             { name: '出行次数', value: tripNum, color: 'red' },
-                            { name: '总路程', value: sumTrip.toFixed(2), color: 'grey' }
+                            { name: '总路程', value: sumTrip.toFixed(2), color: 'yellow' }
                         ]
                     })
                 }

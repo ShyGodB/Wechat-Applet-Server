@@ -80,7 +80,7 @@ App({
                             success:(res) => {
                                 if(res.data.showapi_res_code === 0) {
                                     const result = res.data.showapi_res_body.list[0];
-                                    this.globalData.updateTime = result.ct;
+                                    this.globalData.updateTime = result.ct.substring(0, 16);
                                     this.globalData.gasoline = [
                                         { name: '89#', value: result.p89 },
                                         { name: '92#', value: result.p92, checked: 'true' },
@@ -100,12 +100,14 @@ App({
     globalData: {
         hasLocation: false,
         hasGasoline: false,
-
         isNewUser: false,
         isUser: false,
         location: {},
         userInfo: {},
         updateTime: '2019-5-5 12:00:00',
-        gasoline: []
+        gasoline: [],
+        cars:[
+            
+        ]
     }
 })

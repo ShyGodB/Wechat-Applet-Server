@@ -38,8 +38,14 @@ Page({
 
     // 实时更新单价
     changePrice(ev) {
+        const price = Number(ev.detail.value);
+        const amount = Number(this.data.amount);
+        const amount1 = amount / 100;
+        const trip = Number(this.data.trip);
+        const cost = price * amount1 * trip;
         this.setData({
-            price: ev.detail.value
+            price: ev.detail.value,
+            cost: cost.toFixed(2)
         });
         if (this.data.isUser === true && ev.detail.value !== undefined) {
             const data = [app.globalData.userInfo.id, 'price', Number(ev.detail.value)];
@@ -55,8 +61,14 @@ Page({
     },
     // 实时更新油耗     
     changeAmount(ev) { 
+        const price = Number(this.data.price);
+        const amount = Number(ev.detail.value);
+        const amount1 = amount / 100;
+        const trip = Number(this.data.trip);
+        const cost = price * amount1 * trip;
         this.setData({
-            amount: ev.detail.value
+            amount: ev.detail.value,
+            cost: cost.toFixed(2)
         });
         if(this.data.isUser === true && ev.detail.value !== undefined) {
             const data = [app.globalData.userInfo.id, 'amount', Number(ev.detail.value)];
@@ -72,8 +84,14 @@ Page({
     },
     // 实时更新路程
     changeTrip(ev) {
+        const price = Number(this.data.price);
+        const amount = Number(this.data.amount);
+        const amount1 = amount / 100;
+        const trip = Number(ev.detail.value);
+        const cost = price * amount1 * trip;
         this.setData({
-            trip: ev.detail.value
+            trip: ev.detail.value,
+            cost: cost.toFixed(2)
         });
     },
 
@@ -88,10 +106,6 @@ Page({
               date = new Date(),
               time = date.toLocaleString(),
               ms = Date.parse(new Date());
-
-        this.setData({
-            cost: cost.toFixed(2)
-        });
         
         const obj = {
             gaso: gaso,
