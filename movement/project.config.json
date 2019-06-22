@@ -9,14 +9,12 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"checkInvalidKey": true
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.5",
+	"libVersion": "2.7.1",
 	"appid": "wxd769fd7ca8895e6e",
-	"projectname": "yixing",
+	"projectname": "running",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

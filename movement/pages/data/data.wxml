@@ -1,0 +1,54 @@
+<view class="box-main">
+    <view class="header navbar-main">
+
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                    <view class="main-echart">
+                        Echart
+                    </view>
+                </view>
+
+
+                <view class="weui-tab__content data-list" hidden="{{activeIndex != 1}}">
+
+                    <view class="cu-list menu">
+                        <view class="cu-item">
+                            <view class="list-top content text-red">
+                                <text class="cuIcon-circlefill text-grey"></text>
+                                <text class="text-blue"> 跑步 </text>
+                                <text class="text-orange"> 俯卧撑 </text>
+                                <text class="text-purple"> 仰卧起坐 </text>
+                                <view class="d-inline-block float-right">
+                                    <text class="text-brown"> 日期 </text>
+                                </view>
+                            </view>
+                        </view>
+                    </view> 
+
+                    <view  wx:if="{{data.length !== 0}}" class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}" wx:for="{{data}}" wx:key>
+                        <view class="cu-item">
+                            <view class="content text-red">
+                                <text class="cuIcon-circlefill text-grey"></text>
+                                <text class="text-blue"> {{item.run}} </text>
+                                <text class="text-orange data-item_1"> {{item.put}} </text>
+                                <text class="text-purple data-item_2"> {{item.sit}} </text>
+                                <view class="d-inline-block float-right">
+                                    <text class="text-brown"> {{item.time}} </text>
+                                </view>
+                            </view>
+                        </view>
+                    </view> 
+                </view>
+            </view>
+        </view>
+    </view> 
+</view>

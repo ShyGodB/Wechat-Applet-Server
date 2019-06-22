@@ -1,0 +1,13 @@
+@import "/app.wxss";
+
+.data-list {
+    padding: 10rpx;
+}
+
+.data-item_1 {
+    margin-left: 60rpx;
+}
+
+.data-item_2 {
+    margin-left: 80rpx;
+}

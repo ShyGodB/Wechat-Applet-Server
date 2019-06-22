@@ -1,0 +1,62 @@
+@import "/app.wxss";
+
+page {
+    background-color: #f8f8f8;
+    padding: 0;
+    margin: 0;
+}
+
+.box-top {
+    height: 300rpx;
+    background: #ffffff;
+	color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-main {
+    margin-top: 20rpx;
+}
+
+.main-content {
+    margin-top: 20rpx;
+    background: #ffffff;
+}
+
+.userinfo-avatar {
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+}
+
+.main-title {
+    height: 92rpx;
+    line-height: 92rpx;
+    font-size: 38rpx;
+    padding: 0 10rpx;
+}
+
+.box-end {
+    width: 100%;
+    position: absolute;
+    bottom: 10rpx;
+    background: #ffffff;
+}
+
+.input-gender {
+    width: 100rpx;
+    float: left;
+}
+.group-gender {
+    width: 300rpx;
+    float: right;
+    height: 88rpx;
+    line-height: 88rpx;
+}
+
+.text-grey {
+    color: #777777;
+}

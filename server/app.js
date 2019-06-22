@@ -9,6 +9,9 @@ const userRouter = require('./routes/user');
 const driveRouter = require('./routes/drive');
 const indexRouter = require('./routes/index');
 
+
+const userRouter_movement = require('./routes/movement/user');
+
 const app = new Koa();
 
 
@@ -32,6 +35,10 @@ app.use(userRouter.routes()).use(userRouter.allowedMethods());
 app.use(driveRouter.routes()).use(driveRouter.allowedMethods());
 app.use(addRouter.routes()).use(addRouter.allowedMethods());
 app.use(indexRouter.routes()).use(indexRouter.allowedMethods());
+
+// 运动小程序
+app.use(userRouter_movement.routes()).use(userRouter_movement.allowedMethods());
+
 
 
 app.listen(8080, () => {

@@ -32,7 +32,7 @@
                 <view class="cu-item arrow">
                     <view class="content" bindtap='goToData'>
                         <text class="cuIcon-explorefill text-grey"></text>
-                        <text class="text-grey"> 数据分析 </text>
+                        <text class="text-grey"> 数据整理 </text>
                     </view>
                 </view>
                 <view class="cu-item arrow">
@@ -53,7 +53,6 @@
                         <text class="text-grey"> 关于作者 </text>
                     </view>
                 </view>
-                
             </view>         
 
     </view>

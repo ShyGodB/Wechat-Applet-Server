@@ -1,0 +1,65 @@
+<view class="container">
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                <view class="weui-label">类型</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker bindchange="changeInfo" data-name="类型" value="{{ typeIndex }}" range="{{ typeData }}" mode="selector">
+                    <view class="weui-select weui-select_in-select-after">{{ type }}</view>
+                </picker>
+            </view>
+        </view>
+
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <textarea class="weui-textarea" value="{{ msg }}" bindinput="changeInfo" data-name="msg" placeholder="请输入文本" style="height: 3.3em" />
+                <view class="weui-textarea-counter">0/200</view>
+            </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">qq</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" maxlength='10' value="{{ qq }}" bindinput="changeInfo" data-name="qq" placeholder="请输入qq / 选填"/>
+            </view>
+        </view>
+        
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">邮箱</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" value="{{ email }}" bindinput="changeInfo" data-name="email" placeholder="请输入邮箱 / 选填"/>
+            </view>
+            <view class="weui-cell__ft" wx:if="{{ checkEmail === 1 }}">
+                <icon type="warn" size="23" color="#E64340"></icon>
+            </view>
+            <view class="weui-cell__ft" wx:if="{{ checkEmail === 2 }}">
+                <icon type="success" size="23" color="#07c160"></icon>
+            </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">手机</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" maxlength='11' value="{{ mobile }}" bindinput="changeInfo" data-name="手机" placeholder="请输入手机号 / 必填"/>
+            </view>
+            <view class="weui-cell__ft" wx:if="{{ checkMobile === 1 }}">
+                <icon type="warn" size="23" color="#E64340"></icon>
+            </view>
+            <view class="weui-cell__ft" wx:if="{{ checkMobile === 2 }}">
+                <icon type="success" size="23" color="#07c160"></icon>
+            </view>
+        </view>
+    </view>
+
+
+    <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="submit">提交</button>
+    </view>
+</view>

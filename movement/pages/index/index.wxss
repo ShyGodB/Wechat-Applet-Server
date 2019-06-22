@@ -1,0 +1,55 @@
+@import "/app.wxss";
+
+page {
+    background-color: #ffffff;
+}
+
+.page__bd {
+    width: 100%;
+    margin-top: 20rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

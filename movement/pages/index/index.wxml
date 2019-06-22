@@ -1,0 +1,67 @@
+<view class="container flex p-20">
+    <view class="topBox mb-10 w-100 flex">
+        <view class="top-left top w-100">
+            <view class="text-orange font-size-40" bindtap='goAuthorization'>
+                {{ isUser === true ? userInfo.nickname : '未登陆' }}
+            </view>
+        </view>
+
+        <view class="top-right top w-100">
+            <view class="picker place text-mauve text-right font-size-40">
+                {{ hasLocation === true ? location.city : '未定位' }}
+            </view>
+        </view>
+    </view>
+
+    <view class="mainBox w-100 flex mb-10">
+        <view class="content w-100">
+
+            <view class="updateTime mb-10 p-10 font-size-40">  
+                <text class="text-danger ml-10">  {{ time }} </text>
+            </view>
+
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">跑步</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" bindinput='runChange' value="{{ run }}" type="digit" placeholder="" placeholder-class='small-grey'/>
+                        <!-- <text class="font-size-32 text-secondary float-right"> （km） </text> -->
+                    </view>
+                </view>  
+            </view>
+
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">俯卧撑</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" bindinput='putChange' value="{{ put }}" type="digit" placeholder="" placeholder-class='small-grey'/>
+                        <!-- <text class="font-size-32 text-secondary float-right"> （个） </text> -->
+                    </view>
+                </view>  
+            </view>
+
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">仰卧起坐</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input class="weui-input" bindinput='sitChange' value="{{ sit }}" type="digit" placeholder="" placeholder-class='small-grey'/>
+                        <!-- <text class="font-size-32 text-secondary float-right"> （个） </text> -->
+                    </view>
+                </view>  
+            </view>
+
+        </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing">
+        <button class="weui-btn" type="primary" bindtap='uploadData'> 上传数据 </button>
+    </view>
+</view>
+
+

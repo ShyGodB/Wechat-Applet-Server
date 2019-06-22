@@ -1,0 +1,7 @@
+@import "public/css/my.wxss";
+@import "public/css/weui.wxss";
+
+
+page {
+    background: #f8f8f8;
+}

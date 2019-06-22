@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+rolerconst mysql = require('mysql2');
 
 const pool = mysql.createPool({
     host: 'localhost',

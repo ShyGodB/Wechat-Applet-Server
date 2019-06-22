@@ -110,7 +110,7 @@ Page({
                     "Content-Type": "application/json"
                 },
                 success: (res) => {
-                    const addNum = res.data.length
+                    const addNum = res.data.length,
                           len = res.data.length;
                     let addCost = 0,
                         addGaso = 0;

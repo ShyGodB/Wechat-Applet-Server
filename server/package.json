@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "WeChat applet server",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
@@ -10,15 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
-    "blueimp-md5": "^2.10.0",
-    "bootstrap": "^4.3.1",
-    "forever": "^1.0.0",
-    "forever-monitor": "^1.7.1",
     "jquery": "^3.4.0",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
-    "koa-ejs": "^4.2.0",
     "koa-json": "^2.0.2",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",

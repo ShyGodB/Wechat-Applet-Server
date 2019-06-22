@@ -1,0 +1,37 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="top mt-30">
+        <view class="icon-box">
+            <icon type="info" size="93"></icon>
+        </view>
+        <view class="top-title">
+            ^_^ 亲，您还没有授权登录哦！- ^_^
+        </view>
+
+        <view class="top-instruction">
+            <view> 请允许我们获取您的基础信息（头像、昵称）</view>
+            <view> 不会获取您的个人隐私信息 </view>
+            <view> 我们不会泄漏您的任何信息 </view>
+        </view>
+    </view>
+
+    <view class="main">
+        <view class="main-userinfo">
+            <button class="weui-btn" open-type="getUserInfo" type="primary" bindgetuserinfo="getUserInfo">用户授权</button>
+        </view>
+
+        <view class="main-index">
+            <button class="weui-btn" plain="true" bindtap='goIndex'>返回主页</button>
+        </view>
+    </view>
+
+    <view class="bottom">
+        <view class="bottom-note">
+            点击授权按钮，并点击允许即授权成功
+        </view>
+    </view>
+
+    <view class="footer text-center">
+        <view>Copyright © 2019 qbfang</view>
+    </view>
+</view>

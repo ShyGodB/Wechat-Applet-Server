@@ -1,0 +1,101 @@
+<view class="container">
+    <view class="box-top w-100" style="">
+        <image class="userinfo-avatar" src="{{userInfo.avatar_url}}" mode="cover"></image>
+        <text class="text-black">{{userInfo.nickname}}</text>
+    </view>
+
+
+    <view class="box-main">
+        <view class="main-title">
+            <text class="main-title-left"> 基本信息 </text>
+            <button wx:if="{{beEdit === true}}" type="primary" bindtap='changeBeEdit' data-name="编辑" class="float-right cu-btn bg-blue animation-scale-up margin-sm basis-sm shadow">
+                <text class="mr-6"> 编辑 </text>
+                <image src="/public/images/pen.png" bindtap='changeBeEdit' style="width:32rpx;height:32rpx;"></image>
+            </button>
+
+            <button wx:if="{{beEdit === false}}" type="primary" bindtap='changeBeEdit' data-name="完成" class="float-right cu-btn bg-blue animation-scale-up margin-sm basis-sm shadow">
+                <text class="mr-6"> 完成 </text>
+            </button>
+        </view>
+
+        <view class="main-content weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">昵称</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput='changeInfo' data-name="昵称" placeholder="{{ nickname }}" disabled='{{beEdit}}'/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">性别</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input input-gender" placeholder="{{ gender }}" disabled='true'/>
+                    <radio-group wx:if="{{!beEdit}}" class="radio-group group-gender" data-name="性别" bindchange="changeInfo">
+                        <label class="radio" wx:for="{{items}}" wx:key>
+                            <radio value="{{item.name}}" checked="{{item.checked}}" />
+                            {{item.name}}
+                        </label>
+                    </radio-group>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">国籍</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="{{ country }}" bindtap='changeInfo' data-name="国籍" disabled='true'/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">邮箱</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput='changeInfo' data-name="邮箱" placeholder="{{ email }}" disabled='{{beEdit}}'/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">手机</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput='changeInfo' data-name="手机" placeholder="{{ mobile }}" disabled='{{beEdit}}'/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">生日</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" value="{{}}" data-name="生日" start="1920-02-01" end="2019-09-01" bindchange="changeInfo">
+                        <view class="weui-input text-grey">
+                            {{birthday.length === 0 ? '未设置' : birthday }}
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">地址</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="region" bindchange="changeInfo" data-name="地址" value="{{ userInfo.address }}">
+                        <view class="weui-input text-grey">
+                            {{ address }}
+                        </view>
+                    </picker>
+                </view>
+            </view>  
+        </view>
+    </view>
+
+    <view class="box-end weui-cells weui-cells_after-title">
+        <navigator url="/pages/data/data" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">数据分析</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+    </view>
+</view>
